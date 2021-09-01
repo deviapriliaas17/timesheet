@@ -1,6 +1,6 @@
 @extends('layouts/main')
 
-@section('title', 'Role')
+@section('title', 'Permission')
 
 @section('content')
 
@@ -10,10 +10,10 @@
     <div class="header-body">
       <div class="row align-items-center py-4">
         <div class="col-lg-6 col-7">
-            <h6 class="h2 text-white d-inline-block mb-0">Role</h6>
+            <h6 class="h2 text-white d-inline-block mb-0">Permission</h6>
         </div>
         <div class="col-lg-6 col-5 text-right">
-            <a href="{{ url('create_role') }}" class="btn btn-sm btn-neutral">Add Role</a>
+            <a href="{{ url('create_permission') }}" class="btn btn-sm btn-neutral">Add Permission</a>
         </div>
       </div>
     </div>
@@ -29,7 +29,7 @@
     <div class="card-header border-0">
       <div class="row">
         <div class="col-6">
-          <h3 class="mb-0">Role Table</h3>
+          <h3 class="mb-0">Permission Table</h3>
         </div>
         <div class="col-6 text-right">
         </div>
@@ -41,17 +41,17 @@
       <table class="table align-items-center table-flush">
         <thead class="thead-light">
           <tr class="text-center">
-            <th>No</th>
-            <th>Employee Name</th>
-            <th>Role</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Permission</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           <tr class="text-center">
-            <td>1</td>
             <td>Agus</td>
-            <td>PIC Salak</td>
+            <td>agus@sst.user</td>
+            <td>User</td>
             <td class="table-actions">
               <a href="#!" class="table-action text-primary" data-toggle="tooltip" data-original-title="Edit">
                 <i class="fas fa-user-edit"></i>

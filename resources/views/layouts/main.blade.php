@@ -28,7 +28,7 @@
       <div class="sidenav-header  d-flex  align-items-center">
         <a class="navbar-brand" href="{{ url('/home')}}">
           <img src="./assets/img/brand/sst.png" class="navbar-brand-img" alt="...">
-          <h6 class="h4 text-dark d-inline-block mb-0">Sinergi Solusi Teknik</h6>
+          <h2 class="text-dark d-inline-block mb-0 ml-3">Timesheet</h2>
         </a>
         <div class=" ml-auto ">
           <!-- Sidenav toggler -->
@@ -80,6 +80,12 @@
               <a class="nav-link" href="{{ url('/role') }}">
                 <i class="ni ni-ui-04 text-danger"></i>
                 <span class="nav-link-text">Role</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('/permission') }}">
+                <i class="ni ni-active-40 text-yellow"></i>
+                <span class="nav-link-text">Permission</span>
               </a>
             </li>
           </ul>
@@ -351,8 +357,6 @@
   <script src="./assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
   <!-- Argon JS -->
   <script src="./assets/js/argon.js?v=1.2.0"></script>
-  <!-- Demo JS - remove this in your project -->
-  <script src="./assets/js/demo.min.js"></script>
 </body>
 
 </html>

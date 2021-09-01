@@ -13,7 +13,7 @@
                         <h6 class="h2 text-white d-inline-block mb-0">Employee Table</h6>
                     </div>
                     <div class="col-lg-6 col-5 text-right">
-                    <a href="{{ url('create_employee') }}" class="btn btn-sm btn-neutral">Add Employee</a>
+                        <a href="{{ url('create_employee') }}" class="btn btn-sm btn-neutral">Add Employee</a>
                     </div>
                 </div>
             </div>

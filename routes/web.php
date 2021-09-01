@@ -34,4 +34,6 @@ Route::get('/project', 'ProjectController@index')->name('project');
 
 Route::get('/role', 'RoleController@index')->name('role');
 
+Route::get('/permission', 'PermissionController@index')->name('permission');
+
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
