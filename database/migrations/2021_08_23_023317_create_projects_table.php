@@ -18,7 +18,7 @@ class CreateProjectsTable extends Migration
             $table->string('project_code');
             $table->string('name_project');
             $table->string('client');
-            $table->boolean('status')->default('false');
+            $table->boolean('status')->default(false);
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->timestamps();
