@@ -42,16 +42,15 @@
         <thead class="thead-light">
           <tr class="text-center">
             <th>Name</th>
-            <th>Email</th>
-            <th>Permission</th>
+            <th>Guard Name</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
+          @foreach($permissions as $permission)
           <tr class="text-center">
-            <td>Agus</td>
-            <td>agus@sst.user</td>
-            <td>User</td>
+            <td>{{ $permission->name}}</td>
+            <td>{{ $permission->guard_name}}</td>
             <td class="table-actions">
               <a href="#!" class="table-action text-primary" data-toggle="tooltip" data-original-title="Edit">
                 <i class="fas fa-user-edit"></i>
@@ -61,6 +60,7 @@
               </a>
             </td>
           </tr>
+          @endforeach
         </tbody>
       </table>
     </div>

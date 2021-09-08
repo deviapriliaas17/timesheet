@@ -20,7 +20,7 @@
             <div class="col">
                 <div class="card">
                     <!-- Card header -->
-                    <div class="card-header border-0">
+                    <div class="card-header border-0 mb--4">
                         <div class="row">
                             <div class="col-9">
                                 <h3 class="mb-0">Salak</h3>
@@ -44,7 +44,7 @@
 
                     <!-- Light table -->
                     <div class="table-responsive">
-                        <table class="table align-items-center table-bordered">
+                        <table class="table align-items-center table-bordered mb-4">
                             <col>
                             <colgroup span="2"></colgroup>
                             <thead class="thead-light">

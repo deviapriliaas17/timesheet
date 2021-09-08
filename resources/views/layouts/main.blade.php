@@ -65,28 +65,40 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ url('/employee') }}">
-                <i class="ni ni-circle-08 text-success"></i>
-                <span class="nav-link-text">Employee</span>
+              <a class="nav-link" href="#navbar-management" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-management">
+                <i class="ni ni-ungroup text-orange"></i>
+                <span class="nav-link-text">Management</span>
               </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url('/project') }}">
-                <i class="ni ni-briefcase-24 text-orange"></i>
-                <span class="nav-link-text">Project</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url('/role') }}">
-                <i class="ni ni-ui-04 text-danger"></i>
-                <span class="nav-link-text">Role</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url('/permission') }}">
-                <i class="ni ni-active-40 text-yellow"></i>
-                <span class="nav-link-text">Permission</span>
-              </a>
+              <div class="collapse" id="navbar-management">
+                <ul class="nav nav-sm flex-column">
+                  <li class="nav-item">
+                    <a href="{{ url('/employee') }}" class="nav-link">
+                      <span class="sidenav-mini-icon"> <i class="ni ni-circle-08 text-success"></i> </span>
+                      <span class="sidenav-normal"> Employee </span>
+                    </a>
+                  </li>
+                  @role('admin')
+                  <li class="nav-item">
+                    <a href="{{ url('/project') }}" class="nav-link">
+                      <span class="sidenav-mini-icon"> <i class="ni ni-briefcase-24 text-orange"></i> </span>
+                      <span class="sidenav-normal"> Project </span>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ url('/role') }}" class="nav-link">
+                      <span class="sidenav-mini-icon"> <i class="ni ni-ui-04 text-danger"></i>  </span>
+                      <span class="sidenav-normal"> Role </span>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ url('/permission') }}" class="nav-link">
+                      <span class="sidenav-mini-icon"> <i class="ni ni-active-40 text-yellow"></i> </span>
+                      <span class="sidenav-normal"> Permission</span>
+                    </a>
+                  </li>
+                  @endrole
+                </ul>
+              </div>
             </li>
           </ul>
         </div>
@@ -295,7 +307,8 @@
                     <img alt="Image placeholder" src="./assets/img/brand/sst.png">
                   </span>
                   <div class="media-body  ml-2  d-none d-lg-block">
-                    <span class="mb-0 text-sm  font-weight-bold">{{ Auth::user()->name }}</span>
+                    <!-- <span class="mb-0 text-sm  font-weight-bold">{{ Auth::user()->name_employee }}</span> -->
+                    <span class="mb-0 text-sm  font-weight-bold"></span>
                   </div>
                 </div>
               </a>
@@ -353,6 +366,7 @@
   <script src="./assets/vendor/jquery/dist/jquery.min.js"></script>
   <script src="./assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="./assets/vendor/js-cookie/js.cookie.js"></script>
+  <script src="./assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
   <script src="./assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
   <script src="./assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
   <!-- Argon JS -->

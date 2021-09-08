@@ -35,22 +35,22 @@
                                             <div class="row">
                                                 <div class="col text-left">
                                                     <div class="form-group">
-                                                        <label for="code-project" class="form-control-label">Code</label>
-                                                        <input type="text" id="code-project" class="form-control @if ($errors->has('code')) is-invalid @endif"
-                                                        name="code" placeholder="Project code.."
-                                                        value="{{ old('code') }}">
-                                                        @if ($errors->has('code'))
-                                                            <div class="invalid-feedback">{{ $errors->first('code') }}
+                                                        <label for="project-name" class="form-control-label">Project</label>
+                                                        <input type="text" id="project-name" class="form-control @if ($errors->has('project')) is-invalid @endif"
+                                                        name="project" placeholder="Project name.."
+                                                        value="{{ old('project') }}">
+                                                        @if ($errors->has('project'))
+                                                            <div class="invalid-feedback">{{ $errors->first('project') }}
                                                             </div>
                                                         @endif
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="name-project" class="form-control-label">Name</label>
-                                                        <input type="text" id="name-project" class="form-control @if ($errors->has('name')) is-invalid @endif"
-                                                        name="name" placeholder="Project name.."
-                                                        value="{{ old('name') }}">
-                                                        @if ($errors->has('name'))
-                                                            <div class="invalid-feedback">{{ $errors->first('name') }}
+                                                        <label for="client-name" class="form-control-label">Client</label>
+                                                        <input type="text" id="client-name" class="form-control @if ($errors->has('client')) is-invalid @endif"
+                                                        name="client" placeholder="Client name.."
+                                                        value="{{ old('client') }}">
+                                                        @if ($errors->has('client'))
+                                                            <div class="invalid-feedback">{{ $errors->first('client') }}
                                                             </div>
                                                         @endif
                                                     </div>
@@ -129,17 +129,20 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr class="text-center">
-                                    <th>Code</th>
-                                    <th>Project</th>
+                                    <th>Code Project</th>
+                                    <th>Project Name</th>
+                                    <th>Client</th>
                                     <th>Status</th>
                                     <th style="width:10px">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($projects as $project )
                                     <tr class="text-center">
-                                        <td>0254</td>
-                                        <td>Cilegon Jaya</td>
-                                        <td>Progress</td>
+                                        <td>{{ $project->project_code}}</td>
+                                        <td>{{ $project->name_project}}</td>
+                                        <td>{{ $project->client}}</td>
+                                        <td>{{ $project->status}}</td>
                                         <td class="table-actions">
                                             <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#">Edit</button>
                                             {{-- <a type="button" class="table-action" data-toggle="modal"
@@ -210,6 +213,7 @@
                                             </form>
                                         </td>
                                     </tr>
+                                    @endforeach
                             </tbody>
                         </table>
                     </div>

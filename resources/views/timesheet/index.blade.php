@@ -20,10 +20,10 @@
             <div class="col">
                 <div class="card">
                     <!-- Card header -->
-                    <div class="card-header border-0">
+                    <div class="card-header border-0 mb--4">
                         <div class="row">
                             <div class="col-9">
-                                <h3 class="mb-0">Company</h3>
+                                <!-- <h3 class="mb-0">Company</h3> -->
                             </div>
                             <div class="col-3 text-right">
                                 <div class="form-group">
@@ -50,22 +50,26 @@
                             <thead class="thead-light">
                                 <tr class="text-center">
                                     <th rowspan="2" scope="rowgroup">No</th>
-                                    <th rowspan="2" scope="rowgroup">Company</th>
-                                    <th colspan=31" scope="colgroup">August</th>
+                                    <th rowspan="2" scope="rowgroup">Project</th>
+                                    <th rowspan="2" scope="rowgroup">Location Project</th>
+                                    <th colspan="32" scope="colgroup">August-September</th>
                                 </tr>
-                                <tr class="text-center">
-                                    @for ($i = 1; $i < 32; $i++)
+                                <tr class="date text-center" id="datepicker" name="date" data-date-format="dd-mm-yyyy">
+
+                                    @foreach($tanggal as $hari)
                                 <th scope="col">
-                                        {{ $i }}
+                                        {{ $hari }}
                                     </th>
-                                    @endfor
+                                    @endforeach
                                 </tr> 
                             </thead>
                             <tbody>
+                            @foreach ($data as $attendance)
                                     <tr class="text-center">
-                                        <td>1</td>
-                                        <td>Salak</td>
-                                        @for ($i = 1; $i < 32; $i++)
+                                        <td>{{ $attendance->id}}</td>
+                                        <td>{{ $attendance->project_name}}</td>
+                                        <td>{{ $attendance->location_name}}</td>
+                                        @for ($i = 1; $i <= 32; $i++)
                                         <td>
                                             <div>
                                                 <a href="{{ url('/attendance') }}">
@@ -75,21 +79,9 @@
                                         </td>
                                         @endfor
                                     </tr>
-                                    <tr class="text-center">
-                                        <td>2</td>
-                                        <td>Darajat</td>
-                                        @for ($i = 1; $i < 32; $i++)
-                                        <td>
-                                            <div>
-                                                <a href="{{ url('/attendance') }}">
-                                                    <i class="fas fa-edit text-primary"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                        @endfor
-                                    </tr>
+                                    @endforeach
                                 </tbody>
-                        </table>
+                        </table> <br>
                     </div>
                 </div>
             </div>

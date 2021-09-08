@@ -12,9 +12,11 @@
                     <div class="col-lg-6 col-7">
                         <h6 class="h2 text-white d-inline-block mb-0">Employee Table</h6>
                     </div>
+                    @can('Add Employee')
                     <div class="col-lg-6 col-5 text-right">
                         <a href="{{ url('create_employee') }}" class="btn btn-sm btn-neutral">Add Employee</a>
                     </div>
+                    @endcan
                 </div>
             </div>
         </div>
@@ -42,41 +44,39 @@
                             <thead class="thead-light">
                                 <tr class="text-center">
                                     <th>Employee Name</th>
-                                    <th>NIK</th>
-                                    <th>Email</th>
                                     <th>Position</th>
-                                    <th>Action</th>
+                                    <th>Address</th>
+                                    <th>Handphone</th>
+                                    <!-- <th>Position</th> -->
+                                    @can('Actions Employee')
+                                    <th>Actions</th>
+                                    @endcan
                                 </tr>
                             </thead>
                             <tbody>
+                            @foreach ($data as $employee)
                                     <tr class="text-center">
-                                        <td>Agus</td>
-                                        <td>23456</td>
-                                        <td>agus@sst.test</td>
-                                        <td>Front-end</td>
+                                        <td>{{ $employee->name}}</td>
+                                        <td>{{ $employee->name_position}}</td>
+                                        <td>{{ $employee->address}}</td>
+                                        <td>{{ $employee->handphone}}</td>
+                                        <!-- <td>Front-end</td> -->
+                                        @can('Actions Employee')
                                         <td class="table-actions">
+                                            @can('Edit Employee')
                                             <a href="#!" class="table-action text-primary" data-toggle="tooltip" data-original-title="Edit">
                                                 <i class="fas fa-user-edit"></i>
                                             </a>
+                                            @endcan
+                                            @can('Delete Employee')
                                             <a href="#">
                                                 <i class="fas fa-trash text-danger"></i>
                                             </a>
+                                            @endcan
                                         </td>
+                                        @endcan
                                     </tr>
-                                    <tr class="text-center">
-                                        <td>Bambang</td>
-                                        <td>34567</td>
-                                        <td>bambang@sst.test</td>
-                                        <td>Back-end</td>
-                                        <td class="table-actions">
-                                            <a href="#!" class="table-action text-primary" data-toggle="tooltip" data-original-title="Edit">
-                                                <i class="fas fa-user-edit"></i>
-                                            </a>
-                                            <a href="#">
-                                                <i class="fas fa-trash text-danger"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
