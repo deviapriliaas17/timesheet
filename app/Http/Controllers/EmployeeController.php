@@ -15,13 +15,12 @@ class EmployeeController extends Controller
     public function index() 
     {
         $employees = Employees::all();
-        $positionEmployee = Positions::all();
-        $positionEmployee = Positions::pluck('name_position', 'id');
-        $id = 1;
-        $data = DB::table('employees')
-                ->join('positions','positions.id','=','employees.position_code')
+        $data = DB::table('users')
+                ->join('positions','positions.id','=','users.position_code')
+                ->join('roles','roles.id','=','users.role_id')
+                ->select('users.name_employee','positions.name_position','address','handphone','roles.name')
                 ->get();
-        return view('employee.index', compact('employees','data','positionEmployee','id'));
+        return view('employee.index', compact('employees','data'));
     }
 
     public function create()

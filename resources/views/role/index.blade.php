@@ -39,11 +39,11 @@
 
         <!-- Light table -->
         <div class="table-responsive">
-          <table class="table align-items-center table-flush">
+          <table class="table align-items-center table-flush mb-4">
             <thead class="thead-light">
               <tr class="text-center">
-                <th>No</th>
-                <th>Employee Name</th>
+                <!-- <th>No</th> -->
+                <!-- <th>Employee Name</th> -->
                 <th>Role</th>
                 <th>Actions</th>
               </tr>
@@ -51,8 +51,6 @@
             <tbody>
               @foreach ($data as $key => $role)
               <tr class="text-center">
-                <td>{{ $role->id}}</td>
-                <td>{{ $role->name_employee }}</td>
                 <td>{{ $role->name }}</td>
                 <td class="table-actions">
                   <a href="#!" class="table-action text-primary" data-toggle="tooltip" data-original-title="Edit">
@@ -67,6 +65,19 @@
             </tbody>
           </table>
         </div>
+        <!-- <div class="row mt-3 mb-3">
+          <div class="ml-4 col-xs-6 col-8">
+              Showing
+              {{ $data->firstItem() }}
+              to
+              {{ $data->lastItem() }}
+              of
+              {{ $data->total() }}
+              enteries
+          </div>
+          <div class="ml-8 col-xs-6 ">
+              {{ $data->links() }}
+          </div> -->
       </div>
     </div>
   </div>

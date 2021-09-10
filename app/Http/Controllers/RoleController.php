@@ -19,9 +19,8 @@ class RoleController extends Controller
     {
         $roles = Roles::all();
         $data = DB::table('roles')
-                ->join('users','users.role_id','=','roles.id')
-                ->get();
-        return view('role.index', compact('roles', 'data'));
+                ->paginate(5);
+        return view('role.index', compact('roles','data'));
     }
 
     public function create() {

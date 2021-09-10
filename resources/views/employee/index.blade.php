@@ -45,6 +45,7 @@
                                 <tr class="text-center">
                                     <th>Employee Name</th>
                                     <th>Position</th>
+                                    <th>Roles</th>
                                     <th>Address</th>
                                     <th>Handphone</th>
                                     <!-- <th>Position</th> -->
@@ -56,8 +57,9 @@
                             <tbody>
                             @foreach ($data as $employee)
                                     <tr class="text-center">
-                                        <td>{{ $employee->name}}</td>
+                                        <td>{{ $employee->name_employee}}</td>
                                         <td>{{ $employee->name_position}}</td>
+                                        <td>{{ $employee->name}}</td>
                                         <td>{{ $employee->address}}</td>
                                         <td>{{ $employee->handphone}}</td>
                                         <!-- <td>Front-end</td> -->

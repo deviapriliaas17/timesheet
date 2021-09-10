@@ -33,7 +33,7 @@ Route::get('/dashboard','DashboardController@index')->name('dashboard');
 Route::get('/timesheet','TimesheetController@index')->name('timesheet');
 Route::post('/timesheet_actions','TimesheetController@store');
 
-Route::get('/attendance','TimesheetController@create')->name('attendance');
+Route::get('/attendance/{location}/{day}','TimesheetController@create')->name('attendance');
 
 Route::get('/summary','SummaryController@index')->name('summary');
 
@@ -43,6 +43,9 @@ Route::post('/create_employee','EmployeeController@store')->name('addEmployee');
 
 Route::get('/project', 'ProjectController@index');
 Route::post('/project', 'ProjectController@store');
+
+Route::get('/project_location', 'ProjectLocationController@index');
+
 
 Route::get('/role', 'RoleController@index')->name('role');
 Route::get('/create_role','RoleController@create');

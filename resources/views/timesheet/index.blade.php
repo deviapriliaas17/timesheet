@@ -52,36 +52,52 @@
                                     <th rowspan="2" scope="rowgroup">No</th>
                                     <th rowspan="2" scope="rowgroup">Project</th>
                                     <th rowspan="2" scope="rowgroup">Location Project</th>
-                                    <th colspan="32" scope="colgroup">August-September</th>
+                                    <th colspan="31" scope="colgroup">September-October</th>
                                 </tr>
                                 <tr class="date text-center" id="datepicker" name="date" data-date-format="dd-mm-yyyy">
 
-                                    @foreach($tanggal as $hari)
+                                    @foreach($dates as $day)
                                 <th scope="col">
-                                        {{ $hari }}
+                                        {{ $day }}
                                     </th>
                                     @endforeach
                                 </tr> 
                             </thead>
                             <tbody>
-                            @foreach ($data as $attendance)
+                            @foreach ($data as $key => $attendance)
                                     <tr class="text-center">
-                                        <td>{{ $attendance->id}}</td>
+                                        <td>{{ $data->firstItem() + $key }}</td>
                                         <td>{{ $attendance->project_name}}</td>
                                         <td>{{ $attendance->location_name}}</td>
-                                        @for ($i = 1; $i <= 32; $i++)
+                                        @foreach($dates as $day)
                                         <td>
                                             <div>
-                                                <a href="{{ url('/attendance') }}">
+                                                <input type="hidden" name="location_name[]" value="{{ $attendance->location_name }}">
+                                                <input type="hidden" name="day[]" value="{{ $day }}">
+                                                <a href="{{ url('/attendance/'.$attendance->project_location_code).'/'.$day }}">
                                                     <i class="fas fa-edit text-primary"></i>
                                                 </a>
                                             </div>
                                         </td>
-                                        @endfor
+                                        @endforeach
                                     </tr>
                                     @endforeach
                                 </tbody>
                         </table> <br>
+                        <!-- <div class="row mt-3 mb-3">
+                            <div class="ml-4 col-xs-6 col-8">
+                                Showing
+                                {{ $data->firstItem() }}
+                                to
+                                {{ $data->lastItem() }}
+                                of
+                                {{ $data->total() }}
+                                enteries
+                            </div>
+                            <div class="ml-5 col-xs-6">
+                                {{ $data->links() }}
+                            </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

@@ -28,9 +28,9 @@
                             <div class="col-5 ml--5">
                                 <b>Attendance</b>
                             </div>
-                            <div class="col-6 text-right ml-5">
+                            <!-- <div class="col-6 text-right ml-5">
                                 <button type="submit" name="submit" class="btn btn-large btn-primary">Submit</button>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 
@@ -100,9 +100,9 @@
                                 <div class="ml-8 col-xs-6 ">
                                     {{ $data->links() }}
                                 </div>
-                                <!-- <div class="col-12 text-right mt-4 ml--3">
+                                <div class="col-12 text-right mt-4 ml--3">
                                     <button type="submit" name="submit" class="btn btn-large btn-primary">Submit</button>
-                                </div> <br> -->
+                                </div> <br>
                             </div>
                         </form>
                     </div>

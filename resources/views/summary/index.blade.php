@@ -23,9 +23,24 @@
                     <div class="card-header border-0 mb--4">
                         <div class="row">
                             <div class="col-9">
-                                <h3 class="mb-0">Salak</h3>
+                                <h3 class="mb-0"></h3>
                             </div>
-                            <div class="col-3 text-right">
+                            <div class="col-sm-3">
+                                <div class="form-group  text-left ">
+                                    <label class="form-control-label text-align-left"
+                                        for="formControl">Location Project</label>
+                                    <select class="form-control small" id="formControlSelect"
+                                        name="position">
+                                        @foreach($location_project as $key => $value)
+                                            <option value="{{ $key }}"
+                                                {{ $key == $id ? 'selected' : '' }}>
+                                                {{ $value }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- <div class="col-3 text-right">
                                 <div class="form-group">
                                         <div class="form-group">
                                             <div class="input-group">
@@ -37,7 +52,7 @@
                                             </div>
                                         </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 
@@ -45,61 +60,38 @@
                     <!-- Light table -->
                     <div class="table-responsive">
                         <table class="table align-items-center table-bordered mb-4">
-                            <col>
-                            <colgroup span="2"></colgroup>
-                            <thead class="thead-light">
-                                <tr class="text-center">
-                                    <th rowspan="2" scope="rowgroup">Date</th>
-                                    <th colspan="2" scope="colgroup">Agus</th>
-                                    <th colspan="2" scope="colgroup">Bambang</th>
-                                </tr>
-                                <tr class="text-center">
-                                <th scope="col">
-                                        W
-                                </th>
-                                <th scope="col">
-                                        M        
-                                </th>
-                                <th scope="col">
-                                        W
-                                </th>
-                                <th scope="col">
-                                        M        
-                                </th>
-                                </tr> 
-                            </thead>
-                            <tbody>
-                                    <tr class="text-center">
-                                        <td>1</td>
-                                        <td>v</td>
-                                        <td>v</td>
-                                        <td>v</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>2</td>
-                                        <td>v</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>v</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>3</td>
-                                        <td>v</td>
-                                        <td></td>
-                                        <td>v</td>
-                                        <td>v</td>
-                                    </tr>
-                                </tbody>
-                            <tbody>
-                                    <tr class="text-center">
-                                        <td>Total</td>
-                                        <td>3</td>
-                                        <td>1</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                    </tr>
-                                </tbody>
+                        <col>
+                        <colgroup span="2"></colgroup>
+                        <colgroup span="2"></colgroup>
+                        
+                        <thead class="thead-light">
+                            <tr class="text-center">
+                            <th rowspan="2">Date</th>
+                            @foreach($employees as $e)
+                                <th colspan="3" scope="colgroup">{{ $e->name_employee }}</th>
+                            @endforeach
+                            </tr>
+                            <tr>
+                            @foreach($employees as $e)
+                                <th scope="col">Work</th>
+                                <th scope="col">Mandays</th>
+                                <th scope="col">Absent</th>
+                            @endforeach
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($times as $t)
+                            <tr class="text-center">
+                                <td>{{ date('d-m-Y', strtotime($t->date)) }}</td>
+                                @foreach($t->data as $d)
+                                    <td>{{ $d->work }}</td>
+                                    <td>{{ $d->mandays }}</td>
+                                    <td>{{ $d->absent }}</td>
+                                @endforeach
+                            </tr>
+                            @endforeach
+                        </tbody>
+
                         </table>
                     </div>
                 </div>

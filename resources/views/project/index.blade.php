@@ -44,16 +44,6 @@
                                                             </div>
                                                         @endif
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label for="client-name" class="form-control-label">Client</label>
-                                                        <input type="text" id="client-name" class="form-control @if ($errors->has('client')) is-invalid @endif"
-                                                        name="client" placeholder="Client name.."
-                                                        value="{{ old('client') }}">
-                                                        @if ($errors->has('client'))
-                                                            <div class="invalid-feedback">{{ $errors->first('client') }}
-                                                            </div>
-                                                        @endif
-                                                    </div>
                                                 </div>
                                             </div>
                                     </div>
@@ -128,21 +118,17 @@
                     <div class="table-responsive">
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
-                                <tr class="text-center">
-                                    <th>Code Project</th>
+                                <tr>
+                                    <!-- <th>Code Project</th> -->
                                     <th>Project Name</th>
-                                    <th>Client</th>
-                                    <th>Status</th>
                                     <th style="width:10px">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($projects as $project )
-                                    <tr class="text-center">
-                                        <td>{{ $project->project_code}}</td>
-                                        <td>{{ $project->name_project}}</td>
-                                        <td>{{ $project->client}}</td>
-                                        <td>{{ $project->status}}</td>
+                                    <tr>
+                                        <!-- <td>{{ $project->project_code}}</td> -->
+                                        <td>{{ $project->project_name}}</td>
                                         <td class="table-actions">
                                             <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#">Edit</button>
                                             {{-- <a type="button" class="table-action" data-toggle="modal"

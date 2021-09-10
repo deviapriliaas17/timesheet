@@ -14,7 +14,7 @@ class ProjectController extends Controller
         $positionEmployee = Positions::all();
         $positionEmployee = Positions::pluck('name_position', 'id');
         $id = 1;
-        return view('project.index', compact('projects'));
+        return view('Project.index', compact('projects'));
     }
 
     public function store(Request $request)

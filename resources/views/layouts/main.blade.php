@@ -10,14 +10,14 @@
   <title>@yield('title')</title>
 
   <!-- Favicon -->
-  <link rel="icon" href="./assets/img/brand/sst.png" type="image/png">
+  <link rel="icon" href="{{ asset('assets/img/brand/sst.png')}}" type="image/png">
   <!-- Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
   <!-- Icons -->
-  <link rel="stylesheet" href="./assets/vendor/nucleo/css/nucleo.css" type="text/css">
-  <link rel="stylesheet" href="./assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+  <link rel="stylesheet" href="{{ asset('assets/vendor/nucleo/css/nucleo.css')}}" type="text/css">
+  <link rel="stylesheet" href="{{ asset('assets/vendor/@fortawesome/fontawesome-free/css/all.min.css')}}" type="text/css">
   <!-- Argon CSS -->
-  <link rel="stylesheet" href="./assets/css/argon.css?v=1.2.0" type="text/css">
+  <link rel="stylesheet" href="{{ asset('assets/css/argon.css?v=1.2.0')}}" type="text/css">
 </head>
 
 <body>
@@ -27,7 +27,7 @@
       <!-- Brand -->
       <div class="sidenav-header  d-flex  align-items-center">
         <a class="navbar-brand" href="{{ url('/home')}}">
-          <img src="./assets/img/brand/sst.png" class="navbar-brand-img" alt="...">
+          <img src="{{ asset('assets/img/brand/sst.png')}}" class="navbar-brand-img" alt="...">
           <h2 class="text-dark d-inline-block mb-0 ml-3">Timesheet</h2>
         </a>
         <div class=" ml-auto ">
@@ -82,6 +82,12 @@
                     <a href="{{ url('/project') }}" class="nav-link">
                       <span class="sidenav-mini-icon"> <i class="ni ni-briefcase-24 text-orange"></i> </span>
                       <span class="sidenav-normal"> Project </span>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ url('/project_location') }}" class="nav-link">
+                      <span class="sidenav-mini-icon"> <i class="ni ni-briefcase-24 text-danger"></i> </span>
+                      <span class="sidenav-normal"> Project Location </span>
                     </a>
                   </li>
                   <li class="nav-item">
@@ -363,14 +369,14 @@
   </div>
   <!-- Argon Scripts -->
   <!-- Core -->
-  <script src="./assets/vendor/jquery/dist/jquery.min.js"></script>
-  <script src="./assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="./assets/vendor/js-cookie/js.cookie.js"></script>
-  <script src="./assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-  <script src="./assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
-  <script src="./assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+  <script src="{{ asset('assets/vendor/jquery/dist/jquery.min.js')}}"></script>
+  <script src="{{ asset('assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{ asset('assets/vendor/js-cookie/js.cookie.js')}}"></script>
+  <script src="{{ asset('assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
+  <script src="{{ asset('assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js')}}"></script>
+  <script src="{{ asset('assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js')}}"></script>
   <!-- Argon JS -->
-  <script src="./assets/js/argon.js?v=1.2.0"></script>
+  <script src="{{ asset('assets/js/argon.js?v=1.2.0')}}"></script>
 </body>
 
 </html>
