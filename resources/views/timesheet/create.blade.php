@@ -51,12 +51,14 @@
                                 </thead>
                                 <tbody>
                                     @foreach($data as $key => $timesheet)
+                                    @foreach($dates as $day)
                                         <tr class="text-center">
                                             <td>{{ $data->firstItem() + $key }}</td>
                                             <td>
                                                 <input type="hidden" name="id[]" value="{{ $timesheet->id }}">
                                                 <input type="hidden" name="project_location_code[]" value="{{ $timesheet->project_location_code }}">
                                                 <input type="hidden" name="namecode[]" value="{{ $timesheet->namecode }}">
+                                                <input type="hidden" name="day[]" value="{{ $day }}">
                                                 {{ $timesheet->name_employee }}
                                             </td>
                                             <td>
@@ -83,6 +85,7 @@
                                             </div>
                                             </td>
                                         </tr>
+                                        @endforeach
                                         @endforeach
                                     </tbody>
                                 </table>

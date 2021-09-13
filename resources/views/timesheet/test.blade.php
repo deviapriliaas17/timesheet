@@ -69,16 +69,23 @@
                                         <td>{{ $data->firstItem() + $key }}</td>
                                         <td>{{ $attendance->project_name}}</td>
                                         <td>{{ $attendance->location_name}}</td>
+                                        @foreach($timesheet as $t)
                                         @foreach($dates as $day)
                                         <td>
                                             <div>
                                                 <input type="hidden" name="location_name[]" value="{{ $attendance->location_name }}">
-                                                <input  type="hidden" name="day[]" value="{{ $day }}">
+                                                <input  name="day[]" value="{{ $day }}">
                                                 <a href="{{ url('/attendance/'.$attendance->project_location_code).'/'.$day }}">
-                                                        <i class="fas fa-edit text-primary"></i>                    
+                                                    @if($t->work && $t->mandays && $t->absent != null){
+                                                        <i class="fas fa-edit text-danger"></i>
+                                                    }@else{
+                                                        <i class="fas fa-edit text-primary"></i>
+                                                    }@endif
+                                                
                                                 </a>
                                             </div>
                                         </td>
+                                        @endforeach
                                         @endforeach
                                     </tr>
                                     @endforeach

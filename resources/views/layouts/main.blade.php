@@ -313,8 +313,8 @@
                     <img alt="Image placeholder" src="./assets/img/brand/sst.png">
                   </span>
                   <div class="media-body  ml-2  d-none d-lg-block">
-                    <!-- <span class="mb-0 text-sm  font-weight-bold">{{ Auth::user()->name_employee }}</span> -->
-                    <span class="mb-0 text-sm  font-weight-bold"></span>
+                    <span class="mb-0 text-sm  font-weight-bold">{{ Auth::user()->name_employee }}</span>
+                    <!-- <span class="mb-0 text-sm  font-weight-bold"></span> -->
                   </div>
                 </div>
               </a>

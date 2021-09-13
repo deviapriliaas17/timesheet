@@ -27,10 +27,12 @@
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group  text-left ">
+
+                                
                                     <label class="form-control-label text-align-left"
                                         for="formControl">Location Project</label>
-                                    <select class="form-control small" id="formControlSelect"
-                                        name="position">
+                                    <select class="form-control small" id="input"
+                                        name="location_project">
                                         @foreach($location_project as $key => $value)
                                             <option value="{{ $key }}"
                                                 {{ $key == $id ? 'selected' : '' }}>
@@ -40,19 +42,6 @@
                                     </select>
                                 </div>
                             </div>
-                            <!-- <div class="col-3 text-right">
-                                <div class="form-group">
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
-                                                </div>
-                                                <input name="date" id="date" data-date-format="yyyy-mm-dd" class="form-control datepicker"
-                                                    placeholder="Month" type="text">
-                                            </div>
-                                        </div>
-                                </div>
-                            </div> -->
                         </div>
                     </div>
 
@@ -73,9 +62,9 @@
                             </tr>
                             <tr>
                             @foreach($employees as $e)
-                                <th scope="col">Work</th>
-                                <th scope="col">Mandays</th>
-                                <th scope="col">Absent</th>
+                                <th scope="col">W</th>
+                                <th scope="col">M</th>
+                                <th scope="col">A</th>
                             @endforeach
                             </tr>
                         </thead>
@@ -84,19 +73,17 @@
                             <tr class="text-center">
                                 <td>{{ date('d-m-Y', strtotime($t->date)) }}</td>
                                 @foreach($t->data as $d)
-                                    <td>{{ $d->work }}</td>
-                                    <td>{{ $d->mandays }}</td>
-                                    <td>{{ $d->absent }}</td>
+                                    <td>{{ isset($d->work) ? $d->work : '' }}</td>
+                                    <td>{{ isset($d->mandays) ? $d->mandays : '' }}</td>
+                                    <td>{{ isset($d->absent) ? $d->absent : '' }}</td>
                                 @endforeach
                             </tr>
                             @endforeach
                         </tbody>
-
                         </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 @endsection
