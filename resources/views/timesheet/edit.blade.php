@@ -35,7 +35,8 @@
                     </div>
 
                     <!-- Light table -->
-                    <form action="/timesheet_actions" method="post">
+                    <form action="{{ url('/attendance_update/'.$data[0]->id) }}" method="post">
+                    {{ method_field('patch') }}
                     {{ csrf_field() }}
                         <div class="table-responsive">
                             <table class="table align-items-center table-bordered">
@@ -52,32 +53,30 @@
                                 <tbody>
                                     <?php $count = 0; ?>
                                     @foreach($data as $key => $timesheet)
-                                    @foreach($dates as $day)
                                         <tr class="text-center">
-                                        <td>{{ ++$count }}</td>
+                                            <td>{{ ++$count }}</td>
                                             <td>
                                                 <input type="hidden" name="id[]" value="{{ $timesheet->id }}">
                                                 <input type="hidden" name="project_location_code[]" value="{{ $timesheet->project_location_code }}">
                                                 <input type="hidden" name="namecode[]" value="{{ $timesheet->namecode }}">
-                                                <input type="hidden" name="day[]" value="{{ $day }}">
                                                 {{ $timesheet->name_employee }}
                                             </td>
                                             <td>
                                             <div class="custom-control custom-checkbox">
-                                                <input name="working[{{$timesheet->id}}]" value="" type="hidden">
-                                                <input name="working[{{$timesheet->id}}]" value="x" type="checkbox">
+                                            <input name="work[{{$timesheet->id}}]" value="x" type="checkbox"
+                                                @if($timesheet->work) checked @endif> 
                                             </div>
                                             </td>
                                             <td>
                                             <div class="custom-control custom-checkbox">
-                                                <input name="mandays[{{$timesheet->id}}]" value="" type="hidden">
-                                                <input name="mandays[{{$timesheet->id}}]" value="x" type="checkbox">
+                                                <input name="mandays[{{$timesheet->id}}]" value="x" type="checkbox"
+                                                @if($timesheet->mandays) checked @endif>   
                                             </div>
                                             </td>
                                             <td>
                                             <div class="custom-control custom-checkbox">
-                                                <input name="absent[{{$timesheet->id}}]" value="" type="hidden">
-                                                <input name="absent[{{$timesheet->id}}]" value="x" type="checkbox">
+                                            <input name="absent[{{$timesheet->id}}]" value="x" type="checkbox"
+                                                @if($timesheet->absent) checked @endif>     
                                             </div>
                                             </td>    
                                             <td>
@@ -87,7 +86,6 @@
                                             </td>
                                         </tr>
                                         @endforeach
-                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -96,7 +94,7 @@
                                 <div class="ml-8 col-xs-6 ">
                                     <div class="col-6 text-right ml-5">
                                         <button type="submit" name="submit" class="btn btn-large btn-primary">Submit</button>
-                                    </div>
+                                    </div> 
                                 </div>
                             </div>
                         </form>

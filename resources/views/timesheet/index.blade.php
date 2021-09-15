@@ -30,7 +30,7 @@
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
-                                                    <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                                                      <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                                                 </div>
                                                 <input name="date" id="date" data-date-format="yyyy-mm-dd" class="form-control datepicker"
                                                     placeholder="Month" type="text">
@@ -64,19 +64,26 @@
                                 </tr> 
                             </thead>
                             <tbody>
-                            @foreach ($data as $key => $attendance)
-                                    <tr class="text-center">
-                                        <td>{{ $data->firstItem() + $key }}</td>
-                                        <td>{{ $attendance->project_name}}</td>
-                                        <td>{{ $attendance->location_name}}</td>
-                                        @foreach($dates as $day)
-                                        <td>
-                                            <div>
-                                                <input type="hidden" name="location_name[]" value="{{ $attendance->location_name }}">
-                                                <input  type="hidden" name="day[]" value="{{ $day }}">
-                                                <a href="{{ url('/attendance/'.$attendance->project_location_code).'/'.$day }}">
-                                                        <i class="fas fa-edit text-primary"></i>                    
-                                                </a>
+                                <?php $count = 0; ?>
+                                @foreach($data as $key => $attendance)
+                                <tr class="text-center">
+                                    <td>{{ ++$count }}</td>
+                                    <td>{{ $attendance->project_name}}</td>
+                                    <td>{{ $attendance->location_name}}</td>
+                                    @foreach($dates as $day)
+                                    <td>
+                                        <div>
+                                            <input  type="hidden" name="location_code[]" value="{{ $attendance->project_location_code }}">
+                                            <input  type="hidden" name="day[]" value="{{ $day }}">
+                                                @if(!in_array($day, $timesheet_action))
+                                                    <a href="{{ url('/attendance/create/'.$attendance->project_location_code.'/'.$day) }}">
+                                                        <i class="fas fa-edit text-primary"></i>
+                                                    </a>
+                                                @else
+                                                    <a href="{{ url('/attendance/'.$attendance->project_location_code.'/'.$day.'/edit') }}">
+                                                        <i class="fas fa-edit text-danger"></i>
+                                                    </a>
+                                                @endif
                                             </div>
                                         </td>
                                         @endforeach
@@ -84,20 +91,6 @@
                                     @endforeach
                                 </tbody>
                         </table> <br>
-                        <!-- <div class="row mt-3 mb-3">
-                            <div class="ml-4 col-xs-6 col-8">
-                                Showing
-                                {{ $data->firstItem() }}
-                                to
-                                {{ $data->lastItem() }}
-                                of
-                                {{ $data->total() }}
-                                enteries
-                            </div>
-                            <div class="ml-5 col-xs-6">
-                                {{ $data->links() }}
-                            </div>
-                        </div> -->
                     </div>
                 </div>
             </div>

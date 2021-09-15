@@ -33,7 +33,10 @@ Route::get('/dashboard','DashboardController@index')->name('dashboard');
 // TIMESHEET
 Route::get('/timesheet','TimesheetController@index')->name('timesheet');
 Route::post('/timesheet_actions','TimesheetController@store');
-Route::get('/attendance/{location}/{day}','TimesheetController@create')->name('attendance');
+Route::get('/attendance/create/{location}/{day}','TimesheetController@create')->name('attendance');
+Route::get('/attendance/{location}/{day}/edit','TimesheetController@edit');
+Route::patch('/attendance_update/{id}', 'TimesheetController@update')->name('attendance_update');
+
 
 // SUMMARY
 Route::get('/summary','SummaryController@index')->name('summary');

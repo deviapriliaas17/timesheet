@@ -30,7 +30,7 @@
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
-                                                    <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                                                      <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                                                 </div>
                                                 <input name="date" id="date" data-date-format="yyyy-mm-dd" class="form-control datepicker"
                                                     placeholder="Month" type="text">
@@ -64,28 +64,27 @@
                                 </tr> 
                             </thead>
                             <tbody>
-                            @foreach ($data as $key => $attendance)
-                                    <tr class="text-center">
-                                        <td>{{ $data->firstItem() + $key }}</td>
-                                        <td>{{ $attendance->project_name}}</td>
-                                        <td>{{ $attendance->location_name}}</td>
-                                        @foreach($timesheet as $t)
-                                        @foreach($dates as $day)
-                                        <td>
-                                            <div>
-                                                <input type="hidden" name="location_name[]" value="{{ $attendance->location_name }}">
-                                                <input  name="day[]" value="{{ $day }}">
-                                                <a href="{{ url('/attendance/'.$attendance->project_location_code).'/'.$day }}">
-                                                    @if($t->work && $t->mandays && $t->absent != null){
-                                                        <i class="fas fa-edit text-danger"></i>
-                                                    }@else{
-                                                        <i class="fas fa-edit text-primary"></i>
-                                                    }@endif
-                                                
+                                @foreach($data as $key => $attendance)
+                                <tr class="text-center">
+                                    <td>{{ $data->firstItem() + $key }}</td>
+                                    <td>{{ $attendance->project_name}}</td>
+                                    <td>{{ $attendance->location_name}}</td>
+                                    @foreach($dates as $day)
+                                    <td>
+                                        <div>
+                                            <input  type="hidden" name="location_name[]" value="{{ $attendance->location_name }}">
+                                            <input   name="day[]" value="{{ $day }}">
+                                            @if($day != $timesheet_action[1]->processed_datetime )
+                                                <a href="{{ url('/attendance/'.$attendance->project_location_code.'/'.$day) }}">
+                                                    <i class="fas fa-edit text-primary"></i>
                                                 </a>
+                                            @else                                 
+                                                <a href="{{ url('/attendance/edit'.$attendance->project_location_code.'/'.$day) }}">
+                                                    <i class="fas fa-edit text-danger"></i>
+                                                </a>
+                                            @endif
                                             </div>
                                         </td>
-                                        @endforeach
                                         @endforeach
                                     </tr>
                                     @endforeach

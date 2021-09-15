@@ -22,26 +22,27 @@
                     <!-- Card header -->
                     <div class="card-header border-0 mb--4">
                         <div class="row">
-                            <div class="col-9">
+                            <div class="col-8">
                                 <h3 class="mb-0"></h3>
                             </div>
-                            <div class="col-sm-3">
+                            <div class="col-3 mt-4 ml--4">
                                 <div class="form-group  text-left ">
-
-                                
-                                    <label class="form-control-label text-align-left"
-                                        for="formControl">Location Project</label>
-                                    <select class="form-control small" id="input"
-                                        name="location_project">
-                                        @foreach($location_project as $key => $value)
-                                            <option value="{{ $key }}"
-                                                {{ $key == $id ? 'selected' : '' }}>
-                                                {{ $value }}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                                    <form action="{{url('/summary')}}">
+                                        <select class="form-control small" id="formControlSelect"
+                                            name="location_project">
+                                            @foreach($location_project as $key => $value)
+                                                <option value="{{ $key }}"
+                                                    {{ $key == $id ? 'selected' : '' }}>
+                                                    {{ $value }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="col-1 mt-4 ml--4">
+                                    <button type="submit" name="submit" class="btn btn-md btn-warning">Search</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
 
