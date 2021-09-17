@@ -6,14 +6,18 @@ use DB;
 use DateTime;
 use App\Timesheet;
 use App\TimesheetAction;
+use App\ProjectLocation;
 use Auth;
 
 use Illuminate\Http\Request;
 
 class TimesheetController extends Controller
 {
-    public function index() 
+    public function index(Request $request) 
     {
+        $location_project = ProjectLocation::pluck('project_location_code');
+        // dd($location_project);
+
         $begin = new DateTime( "2021-09-25" );
         $end   = new DateTime( "2021-10-25" );
         $dates = [];
@@ -33,17 +37,24 @@ class TimesheetController extends Controller
                 ->join('projects','projects.project_code','=','project_locations.project_code')
                 // ->join('user_project_locations','user_project_locations.project_location_code','=','project_locations.project_location_code')
                 ->paginate();
-                
+
+        $checkProject = ProjectLocation::pluck('project_location_code');
+        $res=[];
         
-
-
-        $timesheet_action = DB::table('timesheet_action')
-                            // ->join('project_locations','project_locations.project_location_code','=','timesheet_action.project_location_code')
-                            ->where('project_location_code', 'Mki')
+        foreach($checkProject as $check){
+            $timesheet_action = DB::table('timesheet_action')
+                            ->where('project_location_code', $check )
                             ->pluck('processed_datetime')
-                            ->all();
-                            
-                            dd($timesheet_action);
+                            ->all(); 
+            $res[$check] = $timesheet_action;
+        }
+        // $timesheet_action = DB::table('timesheet_action')
+        //                     ->where('project_location_code', 'Asd' )
+        //                     ->pluck('processed_datetime')
+        //                     ->all();                            
+        // $timesheet_action['date'] = $timesheet_action;
+        // $timesheet_action['project'] = $location_project->toArray();
+                            // dd($timesheet_action);
                             // dd(count((array)$timesheet_action));
         // timesheet
         $timesheet = DB::table('timesheet')
@@ -51,7 +62,7 @@ class TimesheetController extends Controller
                     ->get();
 
 
-        return view('timesheet.index', compact ('dates','data','timesheet','timesheet_action'));
+        return view('timesheet.index', compact ('dates','data','timesheet','res'));
     }
     public function create($location, $day) 
     {  
@@ -69,6 +80,7 @@ class TimesheetController extends Controller
 
     public function store(Request $request)
     {   
+        
         for ($i=0; $i < count((array)$request->id); $i++) {
             $timesheet = new Timesheet();        
             $timesheet->namecode = $request->namecode[$i];
@@ -109,7 +121,6 @@ class TimesheetController extends Controller
 
     public function update(Request $request)
     {
-         
         for ($i=0; $i < count($request->id); $i++) {
             $id = (int) $request->id[$i];
             $timesheet = Timesheet::find($id);   

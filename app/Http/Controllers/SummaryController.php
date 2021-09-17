@@ -57,9 +57,10 @@ class SummaryController extends Controller
                     }
             }else{
                 $times[$key]->data[] = [] ;
-            }
-                
+            }   
         }
+        
+
         // dd($times);
         // foreach($employees as $key => $e){
         //     $data = DB::table('timesheet')

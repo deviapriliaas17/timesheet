@@ -73,9 +73,9 @@
                                     @foreach($dates as $day)
                                     <td>
                                         <div>
-                                            <input  type="hidden" name="location_code[]" value="{{ $attendance->project_location_code }}">
+                                            <input  type="hidden" name="project_location_code[]" value="{{ $attendance->project_location_code }}">
                                             <input  type="hidden" name="day[]" value="{{ $day }}">
-                                                @if(!in_array($day, $timesheet_action))
+                                                @if(!in_array($day, $res[$attendance->project_location_code]))
                                                     <a href="{{ url('/attendance/create/'.$attendance->project_location_code.'/'.$day) }}">
                                                         <i class="fas fa-edit text-primary"></i>
                                                     </a>

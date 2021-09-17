@@ -67,16 +67,17 @@
                                 <th scope="col">M</th>
                                 <th scope="col">A</th>
                             @endforeach
-                            </tr>
+
+                        </tr>
                         </thead>
                         <tbody>
                             @foreach($times as $t)
                             <tr class="text-center">
                                 <td>{{ date('d-m-Y', strtotime($t->date)) }}</td>
                                 @foreach($t->data as $d)
-                                    <td>{{ isset($d->work) ? $d->work : '' }}</td>
-                                    <td>{{ isset($d->mandays) ? $d->mandays : '' }}</td>
-                                    <td>{{ isset($d->absent) ? $d->absent : '' }}</td>
+                                <td>{{ isset($d->work) ? $d->work : '' }}</td>
+                                <td>{{ isset($d->mandays) ? $d->mandays : '' }}</td>
+                                <td>{{ isset($d->absent) ? $d->absent : '' }}</td>
                                 @endforeach
                             </tr>
                             @endforeach
