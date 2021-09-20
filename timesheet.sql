@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 17, 2021 at 11:20 AM
+-- Generation Time: Sep 20, 2021 at 05:26 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.8
 
@@ -339,7 +339,7 @@ CREATE TABLE `timesheet` (
   `mandays` varchar(10) DEFAULT NULL,
   `absent` varchar(10) DEFAULT NULL,
   `notes` varchar(255) DEFAULT NULL,
-  `processed_datetime` varchar(191) NOT NULL,
+  `processed_datetime` date NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -349,12 +349,15 @@ CREATE TABLE `timesheet` (
 --
 
 INSERT INTO `timesheet` (`id`, `namecode`, `project_location_code`, `work`, `mandays`, `absent`, `notes`, `processed_datetime`, `created_at`, `updated_at`) VALUES
-(419, 'asd', 'Mki', 'x', NULL, NULL, NULL, '25-09-2021', '2021-09-17 00:50:31', '2021-09-17 00:50:31'),
-(420, 'edi', 'Mki', 'x', 'x', NULL, NULL, '25-09-2021', '2021-09-17 00:50:32', '2021-09-17 00:50:45'),
-(421, 'azi', 'Mki', 'x', NULL, NULL, NULL, '25-09-2021', '2021-09-17 00:50:32', '2021-09-17 00:50:32'),
-(422, 'dsa', 'Asd', 'x', NULL, NULL, NULL, '26-09-2021', '2021-09-17 01:47:21', '2021-09-17 01:47:21'),
-(423, 'dew', 'Asd', 'x', NULL, NULL, NULL, '26-09-2021', '2021-09-17 01:47:21', '2021-09-17 01:47:21'),
-(424, 'dev', 'Asd', NULL, 'x', NULL, NULL, '26-09-2021', '2021-09-17 01:47:21', '2021-09-17 01:47:21');
+(437, 'asd', 'Mki', 'x', NULL, NULL, NULL, '2021-09-25', '2021-09-19 19:55:51', '2021-09-19 19:55:51'),
+(438, 'edi', 'Mki', 'x', NULL, NULL, NULL, '2021-09-25', '2021-09-19 19:55:51', '2021-09-19 19:55:51'),
+(439, 'azi', 'Mki', NULL, 'x', NULL, NULL, '2021-09-25', '2021-09-19 19:55:51', '2021-09-19 19:55:51'),
+(440, 'dsa', 'Asd', 'x', 'x', NULL, NULL, '2021-09-26', '2021-09-19 19:56:22', '2021-09-19 19:56:22'),
+(441, 'dew', 'Asd', NULL, NULL, 'x', NULL, '2021-09-26', '2021-09-19 19:56:22', '2021-09-19 19:56:22'),
+(442, 'dev', 'Asd', NULL, 'x', NULL, NULL, '2021-09-26', '2021-09-19 19:56:23', '2021-09-19 19:56:23'),
+(443, 'asd', 'Mki', 'x', NULL, NULL, NULL, '2021-09-27', '2021-09-19 20:05:44', '2021-09-19 20:05:44'),
+(444, 'edi', 'Mki', NULL, 'x', NULL, NULL, '2021-09-27', '2021-09-19 20:05:44', '2021-09-19 20:05:44'),
+(445, 'azi', 'Mki', NULL, NULL, 'x', NULL, '2021-09-27', '2021-09-19 20:05:45', '2021-09-19 20:05:45');
 
 -- --------------------------------------------------------
 
@@ -365,7 +368,7 @@ INSERT INTO `timesheet` (`id`, `namecode`, `project_location_code`, `work`, `man
 CREATE TABLE `timesheet_action` (
   `id` int(11) NOT NULL,
   `project_location_code` varchar(191) NOT NULL,
-  `processed_datetime` varchar(191) NOT NULL,
+  `processed_datetime` date NOT NULL,
   `processed_by` varchar(191) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -376,12 +379,15 @@ CREATE TABLE `timesheet_action` (
 --
 
 INSERT INTO `timesheet_action` (`id`, `project_location_code`, `processed_datetime`, `processed_by`, `created_at`, `updated_at`) VALUES
-(199, 'Mki', '25-09-2021', 'Admin SST', '2021-09-17 00:50:32', '2021-09-17 00:50:32'),
-(200, 'Mki', '25-09-2021', 'Admin SST', '2021-09-17 00:50:32', '2021-09-17 00:50:32'),
-(201, 'Mki', '25-09-2021', 'Admin SST', '2021-09-17 00:50:32', '2021-09-17 00:50:32'),
-(202, 'Asd', '26-09-2021', 'Admin SST', '2021-09-17 01:47:21', '2021-09-17 01:47:21'),
-(203, 'Asd', '26-09-2021', 'Admin SST', '2021-09-17 01:47:21', '2021-09-17 01:47:21'),
-(204, 'Asd', '26-09-2021', 'Admin SST', '2021-09-17 01:47:21', '2021-09-17 01:47:21');
+(211, 'Mki', '2021-09-25', 'Admin SST', '2021-09-19 19:55:51', '2021-09-19 19:55:51'),
+(212, 'Mki', '2021-09-25', 'Admin SST', '2021-09-19 19:55:52', '2021-09-19 19:55:52'),
+(213, 'Mki', '2021-09-25', 'Admin SST', '2021-09-19 19:55:52', '2021-09-19 19:55:52'),
+(214, 'Asd', '2021-09-26', 'Admin SST', '2021-09-19 19:56:23', '2021-09-19 19:56:23'),
+(215, 'Asd', '2021-09-26', 'Admin SST', '2021-09-19 19:56:24', '2021-09-19 19:56:24'),
+(216, 'Asd', '2021-09-26', 'Admin SST', '2021-09-19 19:56:24', '2021-09-19 19:56:24'),
+(217, 'Mki', '2021-09-27', 'Admin SST', '2021-09-19 20:05:46', '2021-09-19 20:05:46'),
+(218, 'Mki', '2021-09-27', 'Admin SST', '2021-09-19 20:05:46', '2021-09-19 20:05:46'),
+(219, 'Mki', '2021-09-27', 'Admin SST', '2021-09-19 20:05:46', '2021-09-19 20:05:46');
 
 -- --------------------------------------------------------
 
@@ -626,13 +632,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `timesheet`
 --
 ALTER TABLE `timesheet`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=425;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=446;
 
 --
 -- AUTO_INCREMENT for table `timesheet_action`
 --
 ALTER TABLE `timesheet_action`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=205;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=220;
 
 --
 -- AUTO_INCREMENT for table `users`
