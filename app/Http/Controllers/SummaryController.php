@@ -41,7 +41,24 @@ class SummaryController extends Controller
                     ->groupBy('date')
                     ->orderBy('date','ASC')
                     ->get();
-
+        $dateBetween = $times->pluck('date');
+        $lastDate    = $dateBetween->last();
+        $firstDate   = $dateBetween->first();
+        
+        foreach($employees as $key => $e){
+            $data = DB::table('timesheet')
+                        ->join('users','users.namecode','=','timesheet.namecode')
+                        ->join('project_locations','project_locations.project_location_code','=','timesheet.project_location_code')
+                        ->select(DB::raw('count(mandays) as mandays, count(work) as work, count(absent) as absent'))
+                        ->where('users.name_employee', $e->name_employee)
+                        ->whereBetween('timesheet.processed_datetime', [$firstDate, $lastDate])
+                        ->first();
+            $employees[$key]->mandaysCount = $data->mandays;
+            $employees[$key]->workCount = $data->work;
+            $employees[$key]->absentCount = $data->absent;
+        }
+        
+        
         //looping
         foreach($times as $key => $t){
             if(!empty($employees)){

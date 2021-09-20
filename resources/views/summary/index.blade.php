@@ -61,7 +61,7 @@
                                 <th colspan="3" scope="colgroup">{{ $e->name_employee }}</th>
                             @endforeach
                             </tr>
-                            <tr>
+                            <tr class="text-center">
                             @foreach($employees as $e)
                                 <th scope="col">W</th>
                                 <th scope="col">M</th>
@@ -81,6 +81,16 @@
                                 @endforeach
                             </tr>
                             @endforeach
+                        </tbody>
+                        <tbody>
+                            <tr class="text-center">
+                                <td>Total</td>
+                                @foreach($employees as $em)
+                                <td>{{ $em->workCount }}</td>
+                                <td>{{ $em->mandaysCount }}</td>
+                                <td>{{ $em->absentCount }}</td>
+                                @endforeach
+                            </tr>
                         </tbody>
                         </table>
                     </div>

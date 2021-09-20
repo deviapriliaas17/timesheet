@@ -18,8 +18,8 @@ class TimesheetController extends Controller
         $location_project = ProjectLocation::pluck('project_location_code');
         // dd($location_project);
 
-        $begin = new DateTime( "2021-09-25" );
-        $end   = new DateTime( "2021-10-25" );
+        $begin = new DateTime( "25-09-2021" );
+        $end   = new DateTime( "25-10-2021" );
         $dates = [];
 
         $interval = $begin->diff($end);
@@ -27,9 +27,9 @@ class TimesheetController extends Controller
         
         // looping for dates
         for($i = 0; $i <= $days;$i++){
-            $begin = new DateTime( "2021-09-25" );
+            $begin = new DateTime( "25-09-2021" );
             date_add($begin, date_interval_create_from_date_string($i.' days'));
-            array_push($dates, date_format($begin, "d-m-Y"));
+            array_push($dates, date_format($begin, "Y-m-d"));
         }
         
         // project_location
@@ -37,10 +37,10 @@ class TimesheetController extends Controller
                 ->join('projects','projects.project_code','=','project_locations.project_code')
                 // ->join('user_project_locations','user_project_locations.project_location_code','=','project_locations.project_location_code')
                 ->paginate();
-
+                
+        
         $checkProject = ProjectLocation::pluck('project_location_code');
         $res=[];
-        
         foreach($checkProject as $check){
             $timesheet_action = DB::table('timesheet_action')
                             ->where('project_location_code', $check )
