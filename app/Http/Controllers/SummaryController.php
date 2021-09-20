@@ -41,7 +41,6 @@ class SummaryController extends Controller
                     ->groupBy('date')
                     ->orderBy('date','ASC')
                     ->get();
-
         $dateBetween = $times->pluck('date');
         $lastDate    = $dateBetween->last();
         $firstDate   = $dateBetween->first();
@@ -58,6 +57,7 @@ class SummaryController extends Controller
             $employees[$key]->workCount = $data->work;
             $employees[$key]->absentCount = $data->absent;
         }
+        
         
         //looping
         foreach($times as $key => $t){
