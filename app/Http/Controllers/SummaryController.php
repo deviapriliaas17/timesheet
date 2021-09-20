@@ -41,6 +41,7 @@ class SummaryController extends Controller
                     ->groupBy('date')
                     ->orderBy('date','ASC')
                     ->get();
+                    
         $dateBetween = $times->pluck('date');
         $lastDate    = $dateBetween->last();
         $firstDate   = $dateBetween->first();

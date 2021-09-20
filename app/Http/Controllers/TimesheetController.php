@@ -39,8 +39,10 @@ class TimesheetController extends Controller
                 ->paginate();
                 
         
+        // status timesheet
         $checkProject = ProjectLocation::pluck('project_location_code');
         $res=[];
+        
         foreach($checkProject as $check){
             $timesheet_action = DB::table('timesheet_action')
                             ->where('project_location_code', $check )
@@ -48,14 +50,7 @@ class TimesheetController extends Controller
                             ->all(); 
             $res[$check] = $timesheet_action;
         }
-        // $timesheet_action = DB::table('timesheet_action')
-        //                     ->where('project_location_code', 'Asd' )
-        //                     ->pluck('processed_datetime')
-        //                     ->all();                            
-        // $timesheet_action['date'] = $timesheet_action;
-        // $timesheet_action['project'] = $location_project->toArray();
-                            // dd($timesheet_action);
-                            // dd(count((array)$timesheet_action));
+
         // timesheet
         $timesheet = DB::table('timesheet')
                     ->select('work','mandays','absent','processed_datetime')

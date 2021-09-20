@@ -67,9 +67,9 @@
                                 <th scope="col">M</th>
                                 <th scope="col">A</th>
                             @endforeach
-
-                        </tr>
+                            </tr>
                         </thead>
+
                         <tbody>
                             @foreach($times as $t)
                             <tr class="text-center">
@@ -82,6 +82,7 @@
                             </tr>
                             @endforeach
                         </tbody>
+                        
                         <tbody>
                             <tr class="text-center">
                                 <td>Total</td>
