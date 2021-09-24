@@ -313,8 +313,8 @@
                     <img alt="Image placeholder" src="./assets/img/brand/sst.png">
                   </span>
                   <div class="media-body  ml-2  d-none d-lg-block">
-                    <span class="mb-0 text-sm  font-weight-bold">{{ Auth::user()->name_employee }}</span>
-                    <!-- <span class="mb-0 text-sm  font-weight-bold"></span> -->
+                    {{-- <span class="mb-0 text-sm  font-weight-bold">{{ Auth::user()->name_employee }}</span> --}}
+                    <span class="mb-0 text-sm  font-weight-bold"></span>
                   </div>
                 </div>
               </a>
@@ -377,6 +377,32 @@
   <script src="{{ asset('assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js')}}"></script>
   <!-- Argon JS -->
   <script src="{{ asset('assets/js/argon.js?v=1.2.0')}}"></script>
+  <script>
+    $('#editProject').on('show.bs.modal', function (event){
+
+      var button = $(event.relatedTarget)
+      var project = button.data('myproject')
+      var project_id = button.data('projectid')
+      var modal = $(this)
+
+      modal.find('.modal-body #project').val(project);
+      modal.find('.modal-body #project_id').val(project_id);
+    })
+  </script>
+  <script>
+    $('#editLocation').on('show.bs.modal', function (event){
+
+      var button = $(event.relatedTarget)
+      var project_location = button.data('myprojectlocation')
+      var project_code = button.data('myprojectcode')
+      var project_location_id = button.data('projectlocationid')
+      var modal = $(this)
+
+      modal.find('.modal-body #project_location').val(project_location);
+      modal.find('.modal-body #project_code').val(project_code);
+      modal.find('.modal-body #project_location_id').val(project_location_id);
+    })
+  </script>
 </body>
 
 </html>

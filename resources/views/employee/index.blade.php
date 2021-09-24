@@ -42,12 +42,12 @@
                     <div class="table-responsive">
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
-                                <tr class="text-center">
+                                <tr class="text-left">
                                     <th>Employee Name</th>
                                     <th>Position</th>
                                     <th>Roles</th>
                                     <th>Address</th>
-                                    <th>Handphone</th>
+                                    <th>Contact</th>
                                     <!-- <th>Position</th> -->
                                     @can('Actions Employee')
                                     <th>Actions</th>
@@ -55,24 +55,28 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            @foreach ($data as $employee)
-                                    <tr class="text-center">
-                                        <td>{{ $employee->name_employee}}</td>
-                                        <td>{{ $employee->name_position}}</td>
-                                        <td>{{ $employee->name}}</td>
-                                        <td>{{ $employee->address}}</td>
-                                        <td>{{ $employee->handphone}}</td>
+                            @foreach ($data as $user)
+                                    <tr class="text-left">
+                                        <td class="table-user">
+                                            <img src="{{ asset('uploads/employee/' . $user->avatar) }}"
+                                                class="avatar rounded-circle mr-3">
+                                            <b>{{ $user->name_employee }}</b>
+                                        </td>
+                                        <td>{{ $user->name_position}}</td>
+                                        <td>{{ $user->name}}</td>
+                                        <td>{{ $user->address}}</td>
+                                        <td>{{ $user->contact}}</td>
                                         <!-- <td>Front-end</td> -->
                                         @can('Actions Employee')
                                         <td class="table-actions">
                                             @can('Edit Employee')
-                                            <a href="#!" class="table-action text-primary" data-toggle="tooltip" data-original-title="Edit">
+                                            <a href="{{ url('/employee/'.$user->id.'/edit') }}" class="table-action text-primary"  data-toggle="tooltip" data-original-title="Edit">
                                                 <i class="fas fa-user-edit"></i>
                                             </a>
                                             @endcan
                                             @can('Delete Employee')
-                                            <a href="#">
-                                                <i class="fas fa-trash text-danger"></i>
+                                            <a href="/employee/{{ $user->id }}" class="table-action table-action-delete text-danger" data-toggle="tooltip" data-original-title="Delete">
+                                                <i class="fas fa-trash"></i>
                                             </a>
                                             @endcan
                                         </td>

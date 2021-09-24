@@ -11,15 +11,15 @@ Route::get('/', function () {
     //     return 'oke';
     // }
     // $role = Role::find(1);
-
+    
     // $user->assignRole('admin'); // tambah
     // $role->revokePermissionTo('Add Employee'); // hapus
     // $role->syncPermissions('Add Employee', 'Edit Employee', 'Delete Employee', 'View Employee'); // revoke & add (update)
     // dd($role->hasAnyPermission(['Add Employee','Edit Employee'])); // cek beberapa permission
     // dd($user->hasPermission('View Employee')); // cek permission satupersatu
-
+    
     // $user = auth()->user();
-
+    
     // $user->givePermissionTo('View Employee');
     
 });
@@ -45,13 +45,21 @@ Route::get('/summary','SummaryController@index')->name('summary');
 Route::get('/employee','EmployeeController@index')->name('employee');
 Route::get('/create_employee','EmployeeController@create');
 Route::post('/create_employee','EmployeeController@store')->name('addEmployee');
+Route::get('/employee/{id}/edit','EmployeeController@edit')->name('editEmployee');
+Route::post('/employee_update/{id}', 'EmployeeController@update')->name('updateEmployee');
+Route::get('/employee/{id}','EmployeeController@destroy');
 
 // PROJECT
 Route::get('/project', 'ProjectController@index');
-Route::post('/project', 'ProjectController@store');
+Route::post('/add_project', 'ProjectController@store')->name('addProject');
+Route::patch('/project', 'ProjectController@update')->name('updateProject');
+Route::get('/project/{id}', 'ProjectController@destroy');
 
 // PROJECT LOCATION
 Route::get('/project_location', 'ProjectLocationController@index');
+Route::post('/add_project_location', 'ProjectLocationController@store')->name('addProjectLocation');
+Route::patch('/project_location', 'ProjectLocationController@update')->name('updateProjectLocation');
+Route::get('/project_location/{id}', 'ProjectLocationController@destroy');
 
 
 // ROLE

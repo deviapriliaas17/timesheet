@@ -126,14 +126,6 @@ class TimesheetController extends Controller
             $timesheet->update();            
         };
 
-
-
-        // Timesheet::find($request->id)
-        // ->update([
-        //     ''
-        // ]);
-        
-
-            return redirect('/timesheet')->with('success','Saved!');
+        return redirect('/timesheet')->with('success','Saved!');
     }
 }

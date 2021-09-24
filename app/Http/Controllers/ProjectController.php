@@ -14,6 +14,7 @@ class ProjectController extends Controller
         $positionEmployee = Positions::all();
         $positionEmployee = Positions::pluck('name_position', 'id');
         $id = 1;
+
         return view('Project.index', compact('projects'));
     }
 
@@ -21,18 +22,35 @@ class ProjectController extends Controller
     {
         $request->validate([
             'project' => 'required',
-            'client' => 'required'
         ]);
         
         $projects = new Projects();
 
         $projects->project_code = str_random(3);
-        $projects->name_project = $request->input('project');
-        $projects->client = $request->input('client');
-        $projects->status = '2';
+        $projects->project_name = $request->input('project');
 
         $projects->save();
 
         return redirect('/project')->with('success','Project data has been successfully added!');
+    }
+
+    public function update(Request $request)
+    {
+        $request->validate([
+            'project' => 'required',
+        ]);
+        
+        $projects = Projects::findOrFail($request->project_id);
+        $projects->project_name = $request->input('project');
+
+        $projects->update();
+
+        return redirect('/project')->with('success','Project data has been successfully added!');
+    }
+
+    public function destroy($id)
+    {
+        Projects::destroy($id);
+        return redirect('/project')->with('success','Project data has been deleted!');
     }
 }

@@ -18,40 +18,58 @@
                             data-target="#projectModal">
                             Add Project
                         </button>
+
                         <!-- Modal Add Project-->
                         <div class="modal fade" id="projectModal" tabindex="-1" role="dialog"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Add Project</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Add Project Location</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form method="post" action="/project" enctype="multipart/form-data">
+                                        <form method="post" action="{{ route('addProjectLocation') }}" enctype="multipart/form-data">
                                             {{ csrf_field() }}
                                             <div class="row">
                                                 <div class="col text-left">
                                                     <div class="form-group">
-                                                        <label for="project-name" class="form-control-label">Project</label>
-                                                        <input type="text" id="project-name" class="form-control @if ($errors->has('project')) is-invalid @endif"
-                                                        name="project" placeholder="Project name.."
-                                                        value="{{ old('project') }}">
-                                                        @if ($errors->has('project'))
-                                                            <div class="invalid-feedback">{{ $errors->first('project') }}
+                                                        <label for="project-name" class="form-control-label">Project Location Name</label>
+                                                        <input type="text" id="project_location_name" class="form-control @if ($errors->has('project_location_name')) is-invalid @endif"
+                                                        name="project_location_name" placeholder="Project location name.."
+                                                        value="{{ old('project_location_name') }}">
+                                                        @if ($errors->has('project_location_name'))
+                                                            <div class="invalid-feedback">{{ $errors->first('project_location_name') }}
                                                             </div>
                                                         @endif
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="row">
+                                                <div class="col text-left">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label text-align-center"
+                                                            for="project_name">Project Name</label>
+                                                        <select class="form-control small " id="project_code"
+                                                            name="project_code">
+                                                            @foreach ($project as $key => $value)
+                                                                <option value="{{ $key }}"
+                                                                    {{ $key == $id_project ? 'selected' : '' }}>
+                                                                    {{ $value }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Save</button>
-                                    </div>
-                                    </form>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Save</button>
+                                            </div>
+                                        </form>
                                 </div>
                             </div>
                         </div>
@@ -130,66 +148,13 @@
                                         <td>{{ $location->project_name}}</td>
                                         <td>{{ $location->location_name}}</td>
                                         <td class="table-actions">
-                                            <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#">Edit</button>
-                                            {{-- <a type="button" class="table-action" data-toggle="modal"
-                                                data-target="#editProjectModal">
-                                                <i class="fas fa-user-edit"></i>
-                                            </a> --}}
-                                            
-                                            {{-- modal edit --}}
-                                            <div class="modal fade" id="#" tabindex="-1" role="dialog"
-                                                aria-labelledby="editModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="editModalLabel">Edit Project</h5>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <form method="post" action="#"
-                                                                enctype="multipart/form-data">
-                                                                <div class="row">
-                                                                    <div class="col text-left">
-                                                                        <div class="form-group">
-                                                                            <label for="code"
-                                                                                class="form-control-label">{{ __('Project Code') }}</label>
-                                                                            <input type="text" id="input-code"
-                                                                                class="form-control {{ $errors->has('code') ? 'is-invalid' : '' }}"
-                                                                                name="code" placeholder="Project Location Code.."
-                                                                                value="#"
-                                                                                autocomplete="code" autofocus>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label for="name"
-                                                                                class="form-control-label">{{ __('Location Name') }}</label>
-                                                                            <input type="text" id="input-name"
-                                                                                class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}"
-                                                                                name="name" placeholder="Project name.."
-                                                                                value="#"
-                                                                                autocomplete="name" autofocus>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary"
-                                                                data-dismiss="modal">Close</button>
-                                                            <button type="submit" class="btn btn-primary">Edit</button>
-                                                        </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <form action="#" method="post"
-                                                class="d-inline">
-                                                {{ method_field('delete') }}
-                                                {{ csrf_field() }}
-                                                <button type="submit" class="btn btn-sm btn-danger deleteProject">Delete</button>
-                                            </form>
+                                            <a type="button" class="table-action" data-myprojectcode="{{ $location->project_code }}" data-myprojectlocation="{{ $location->location_name }}" data-projectlocationid="{{ $location->id }}" data-toggle="modal"
+                                                data-target="#editLocation">
+                                                <i class="fas fa-user-edit text-primary"></i>
+                                            </a>
+                                            <a href="/project_location/{{ $location->id }}" class="table-action table-action-delete text-danger" data-toggle="tooltip" data-original-title="Delete">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -202,12 +167,56 @@
     </div>
 
 @endsection
-    <script>
-        $(document).ready(function(){
 
-            $('.deleteProject').click(function(e){
-                e.preventDefault();
-                alert('heloooo!');
-            });
-        });
-    </script>
+{{-- modal edit --}}
+<div class="modal fade" id="editLocation" tabindex="-1" role="dialog"
+aria-labelledby="editModal" aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="edtiModal">Edit Project</h5>
+            <button type="button" class="close" data-dismiss="modal"
+                aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form method="post" action="{{ route('updateProjectLocation') }}" enctype="multipart/form-data">
+                {{ method_field('patch') }}
+                {{ csrf_field() }}
+                <div class="row">
+                    <div class="col text-left">
+                        <div class="form-group">
+                            <input type="hidden" name="project_location_id" id="project_location_id" value="">
+                            <label for="project-name" class="form-control-label">Project Location Name</label>
+                            <input type="text" class="form-control" name="project_location" id="project_location">    
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-left">
+                        <div class="form-group">
+                            <label class="form-control-label text-align-center"
+                                for="project_name">Project Name</label>
+                            <select class="form-control small " id="project_code"
+                                name="project_code">
+                                @foreach ($project as $key => $value)
+                                    <option value="{{ $key }}"
+                                        {{ $key == $id_project ? 'selected' : '' }}>
+                                        {{ $value }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary"
+                data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Edit</button>
+        </div>
+        </form>
+    </div>
+</div>
+</div>
