@@ -77,7 +77,6 @@
                       <span class="sidenav-normal"> Employee </span>
                     </a>
                   </li>
-                  @role('admin')
                   <li class="nav-item">
                     <a href="{{ url('/project') }}" class="nav-link">
                       <span class="sidenav-mini-icon"> <i class="ni ni-briefcase-24 text-orange"></i> </span>
@@ -102,7 +101,6 @@
                       <span class="sidenav-normal"> Permission</span>
                     </a>
                   </li>
-                  @endrole
                 </ul>
               </div>
             </li>
