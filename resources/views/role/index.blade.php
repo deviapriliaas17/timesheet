@@ -42,8 +42,6 @@
           <table class="table align-items-center table-flush mb-4">
             <thead class="thead-light">
               <tr class="text-center">
-                <!-- <th>No</th> -->
-                <!-- <th>Employee Name</th> -->
                 <th>Role</th>
                 <th>Actions</th>
               </tr>
@@ -53,10 +51,10 @@
               <tr class="text-center">
                 <td>{{ $role->name }}</td>
                 <td class="table-actions">
-                  <a href="#!" class="table-action text-primary" data-toggle="tooltip" data-original-title="Edit">
-                    <i class="fas fa-user-edit"></i>
+                  <a href="{{ url('/role/'.$role->id.'/edit') }}">
+                    <i class="fas fa-user-edit text-primary"></i>
                   </a>
-                  <a href="#!" class="table-action table-action-delete text-danger" data-toggle="tooltip" data-original-title="Delete">
+                  <a href="/role/{{ $role->id }}" class="table-action table-action-delete text-danger" data-toggle="tooltip" data-original-title="Delete">
                     <i class="fas fa-trash"></i>
                   </a>
                 </td>
@@ -65,19 +63,6 @@
             </tbody>
           </table>
         </div>
-        <!-- <div class="row mt-3 mb-3">
-          <div class="ml-4 col-xs-6 col-8">
-              Showing
-              {{ $data->firstItem() }}
-              to
-              {{ $data->lastItem() }}
-              of
-              {{ $data->total() }}
-              enteries
-          </div>
-          <div class="ml-8 col-xs-6 ">
-              {{ $data->links() }}
-          </div> -->
       </div>
     </div>
   </div>

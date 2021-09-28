@@ -99,19 +99,19 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="form-group mb-2">
+                                {{-- <div class="form-group mb-2">
                                     <div class="input-group input-group-merge input-group-alternative">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-address-card"></i></span>
                                         </div>
-                                    <input type="text" id="input-nik" class="form-control  @if ($errors->has('nik')) is-invalid @endif"
-                                    name="nik" placeholder="NIK" value="{{ old('nik') }}" autocomplete="nik"
+                                    <input type="text" id="input-address" class="form-control  @if ($errors->has('address')) is-invalid @endif"
+                                    name="address" placeholder="Address" value="{{ old('address') }}" autocomplete="address"
                                     autofocus>
-                                    @if ($errors->has('nik'))
-                                        <div class="invalid-feedback">{{ $errors->first('nik') }}</div>
+                                    @if ($errors->has('address'))
+                                        <div class="invalid-feedback">{{ $errors->first('address') }}</div>
                                     @endif
                                 </div>
-                                </div>
+                                </div> --}}
                                 <div class="form-group mb-2">
                                     <div class="input-group input-group-merge input-group-alternative">
                                         <div class="input-group-prepend">

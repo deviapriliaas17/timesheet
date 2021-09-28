@@ -12,11 +12,11 @@
                     <div class="col-lg-6 col-7">
                         <h6 class="h2 text-white d-inline-block mb-0">Employee Table</h6>
                     </div>
-                    @can('Add Employee')
+                    {{-- @can('Add Employee') --}}
                     <div class="col-lg-6 col-5 text-right">
                         <a href="{{ url('create_employee') }}" class="btn btn-sm btn-neutral">Add Employee</a>
                     </div>
-                    @endcan
+                    {{-- @endcan --}}
                 </div>
             </div>
         </div>
@@ -49,9 +49,9 @@
                                     <th>Address</th>
                                     <th>Contact</th>
                                     <!-- <th>Position</th> -->
-                                    @can('Actions Employee')
+                                    {{-- @can('Actions Employee') --}}
                                     <th>Actions</th>
-                                    @endcan
+                                    {{-- @endcan --}}
                                 </tr>
                             </thead>
                             <tbody>
@@ -67,20 +67,20 @@
                                         <td>{{ $user->address}}</td>
                                         <td>{{ $user->contact}}</td>
                                         <!-- <td>Front-end</td> -->
-                                        @can('Actions Employee')
+                                        {{-- @can('Actions Employee') --}}
                                         <td class="table-actions">
-                                            @can('Edit Employee')
+                                            {{-- @can('Edit Employee') --}}
                                             <a href="{{ url('/employee/'.$user->id.'/edit') }}" class="table-action text-primary"  data-toggle="tooltip" data-original-title="Edit">
                                                 <i class="fas fa-user-edit"></i>
                                             </a>
-                                            @endcan
-                                            @can('Delete Employee')
+                                            {{-- @endcan --}}
+                                            {{-- @can('Delete Employee') --}}
                                             <a href="/employee/{{ $user->id }}" class="table-action table-action-delete text-danger" data-toggle="tooltip" data-original-title="Delete">
                                                 <i class="fas fa-trash"></i>
                                             </a>
-                                            @endcan
+                                            {{-- @endcan --}}
                                         </td>
-                                        @endcan
+                                        {{-- @endcan --}}
                                     </tr>
                                 @endforeach
                             </tbody>

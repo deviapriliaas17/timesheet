@@ -403,6 +403,18 @@
       modal.find('.modal-body #project_location_id').val(project_location_id);
     })
   </script>
+  <script>
+    $('#editPermission').on('show.bs.modal', function (event){
+
+      var button = $(event.relatedTarget)
+      var permission = button.data('mypermission')
+      var permission_id = button.data('permissionid')
+      var modal = $(this)
+
+      modal.find('.modal-body #permission').val(permission);
+      modal.find('.modal-body #permission_id').val(permission_id);
+    })
+  </script>
 </body>
 
 </html>
