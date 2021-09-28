@@ -67,16 +67,7 @@ class RoleController extends Controller
                 ->where('id', $id)
                 ->first();
 
-        // $data = DB::table('role_has_permissions')
-        //         ->join('roles','roles.id','=','role_has_permissions.role_id')
-        //         ->join('permissions','permissions.id','=','role_has_permissions.permission_id')
-        //         ->select('role_id','permission_id','permissions.name')
-        //         ->where('role_id', $id)
-        //         ->first();
-
-        
-
-        return view('role.edit',compact('data','role','category'));
+        return view('role.edit',compact('role','category'));
     }
 
     public function destroy($id)

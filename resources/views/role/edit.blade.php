@@ -60,11 +60,8 @@
                                     <div class="row ml-4">
                                         @foreach($c->permission as $p)
                                         <div class="col-sm-3">
-                                            {{-- {{ dd(permission[$data->role_id] }} --}}
                                             <input class="custom-control-input" name="permission[]" id="{{ $p }}" type="checkbox" value="{{ $p }}">
                                             <label class="custom-control-label" for="{{ $p }}">{{ $p }}</label>
-                                            {{-- <input name="work[{{$timesheet->id}}]" value="x" type="checkbox"
-                                                @if($timesheet->work) checked @endif>  --}}
                                         </div>
                                         @endforeach
                                     </div>
