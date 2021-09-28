@@ -12,7 +12,7 @@ class User extends Authenticatable
     use Notifiable, HasRoles;
 
     protected $table = 'users';
-    protected $fillable = ['id','role_id','name_employee','namecode', 'email','position_code','address', 'contact', 'avatar'];
+    protected $fillable = ['id','role_id','name_employee','password','namecode', 'email','position_code','address', 'contact', 'avatar'];
     // protected $hidden = [
     //     'password', 'remember_token',
     // ];
