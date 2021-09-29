@@ -115,6 +115,7 @@ class EmployeeController extends Controller
             foreach($user->roles as $role){
                 $user->removeRole($role->id);
             }
+            // TEST
                 
             $user->name_employee = $request->input('name_employee');
             $user->address  = $request->input('address');
