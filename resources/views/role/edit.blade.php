@@ -60,8 +60,8 @@
                                     <div class="row ml-4">
                                         @foreach($c->permission as $p)
                                         <div class="col-sm-3">
-                                            <input class="custom-control-input" name="permission[]" id="{{ $p }}" type="checkbox" value="{{ $p }}">
-                                            <label class="custom-control-label" for="{{ $p }}">{{ $p }}</label>
+                                            <input class="custom-control-input" name="permission[]" id="{{ $p->name }}" value="{{ $p->name }}" type="checkbox"  @if($p->check) checked @endif>
+                                            <label class="custom-control-label" for="{{ $p->name }}">{{ $p->name }}</label>
                                         </div>
                                         @endforeach
                                     </div>

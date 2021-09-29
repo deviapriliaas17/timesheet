@@ -67,7 +67,7 @@ Route::get('/role', 'RoleController@index')->name('role');
 Route::get('/create_role','RoleController@create');
 Route::post('/role','RoleController@store')->name('addRole');
 Route::get('/role/{id}/edit','RoleController@edit')->name('editRole');
-Route::patch('/role','RoleController@store')->name('updateRole');
+Route::patch('/role/{id}','RoleController@update')->name('updateRole');
 Route::get('/role/{id}', 'RoleController@destroy');
 
 // PERMISSION

@@ -118,7 +118,7 @@
                     <div class="table-responsive">
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
-                                <tr>
+                                <tr> 
                                     <!-- <th>Code Project</th> -->
                                     <th>Project Name</th>
                                     <th style="width:10px">Actions</th>

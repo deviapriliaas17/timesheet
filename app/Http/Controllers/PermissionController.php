@@ -11,7 +11,10 @@ class PermissionController extends Controller
     public function index() 
     {
         $permissions = Permissions::all(); 
-        return view('permission.index', compact('permissions'));
+        $permissions_category = Permissions::pluck('category','category');
+        $category = 2;
+
+        return view('permission.index', compact('permissions_category','permissions','category'));
     }
 
     public function store(Request $request) 
@@ -24,6 +27,7 @@ class PermissionController extends Controller
 
         $permission->name = $request->input('permission');
         $permission->guard_name = 'web';
+        $permission->category = $request->input('permission_category');
 
         $permission->save();
 

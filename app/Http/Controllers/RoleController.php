@@ -47,7 +47,7 @@ class RoleController extends Controller
         $role = Role::find($idRole);
         
         foreach($request->permission as $p){
-            $role->givePermissionTo($p); 
+            $role->givePermissionTo($p);
         }
 
         return redirect('/role');
@@ -57,17 +57,43 @@ class RoleController extends Controller
     {
         $category = Permission::select('category')->groupBy('category')->get();
         
+        $role = Role::find($id);
+
         foreach($category as $key => $value){
-            $permission = Permission::where('category', $value->category)->pluck('name'); 
+            $permission = Permission::where('category', $value->category)->select('name')->get(); 
             $category[$key]->permission = $permission;
+            foreach($category[$key]->permission as $keySecond => $valueSecond){
+                $check = $role->hasPermissionTo($valueSecond->name);
+                $category[$key]->permission[$keySecond]->check = $check;
+            }
+        }
+        
+        return view('role.edit',compact('role','category'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $role = Role::find($id);
+
+        $permissionBefore = $role->permissions;
+
+        foreach($permissionBefore as $value){
+            $role->revokePermissionTo($value->name);
+        }
+        
+        $role->name = $request->input('role_name');
+        $role->guard_name = 'web';
+        $role->update();
+
+        $idRole = Role::where('name', $role->name)->pluck('id')->first();
+        $role = Role::find($idRole);
+
+        foreach($request->permission as $p){
+            $role->givePermissionTo($p);
         }
 
-        $role = DB::table('roles')
-                ->select('id','name')
-                ->where('id', $id)
-                ->first();
-
-        return view('role.edit',compact('role','category'));
+        return redirect('/role');
+        
     }
 
     public function destroy($id)

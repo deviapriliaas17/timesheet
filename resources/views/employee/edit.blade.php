@@ -87,32 +87,37 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="form-control-label text-align-center"
-                                            for="exampleFormControlTextarea1">Position</label>
+                                                for="exampleFormControlTextarea1">Position</label>
                                             <select class="form-control small" id="exampleFormControlSelect1"
-                                            name="position">
+                                                name="position">
                                             @foreach ($positions as $key => $value)
                                             <option value="{{ $key }}" @if($value == $user->name_position) selected @endif>
-                                                {{ $value }}
+                                                    {{ $value }}
                                             </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
+                                            @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="form-control-label text-align-center"
                                             for="exampleFormControlTextarea1">Role</label>
-                                            <select class="form-control small " id="exampleFormControlSelect1"
+                                            <select class="form-control small " id="role"
                                             name="role">
                                             @foreach ($roles as $key => $value)
-                                            <option value="{{ $key }}" @if($value == $user->name) selected @endif>
-                                                        {{ $value }}
-                                                    </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
+                                            <option value="{{ $key }}" 
+                                                @foreach($user->roles as $role)
+                                                    @if($value == $role->name)
+                                                        selected
+                                                    @endif
+                                                @endforeach>
+                                                {{ $value }}
+                                            </option>
+                                            @endforeach
+                                            </select>
                                         </div>
                                     </div>
+                                </div>
                                     <div class="row justify-content-center mt-1">
                                         <img class="avatar rounded-circle" src="{{ asset('uploads/employee/' . $user->avatar) }}"/>
 

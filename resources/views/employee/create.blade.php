@@ -114,7 +114,7 @@
                                             <select class="form-control small " id="role"
                                                 name="role">
                                                 @foreach ($roles as $key => $value)
-                                                    <option value="{{ $key }}"
+                                                    <option value="{{ $value }}"
                                                         {{ $key == $id_roles ? 'selected' : '' }}>
                                                         {{ $value }}
                                                     </option>
@@ -123,7 +123,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                {{-- <div class="row">
+                                <div class="row">
                                     <div class="col sm-6">
                                         <div class="form-group">
                                             <label for="password" class="form-control-label">{{ __('Password') }}</label>
@@ -151,7 +151,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                @endif --}}
                                 <div class="row justify-content-center mt-1">
                                     <img class="avatar rounded-circle" src="./assets/img/theme/user.jpg" />
                                 </div>

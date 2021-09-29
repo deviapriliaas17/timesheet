@@ -12,7 +12,7 @@
                     <div class="col-lg-6 col-7">
                         <h6 class="h2 text-white d-inline-block mb-0">Employee Table</h6>
                     </div>
-                    {{-- @can('Add Employee') --}}
+                    {{-- @can('Create Employee') --}}
                     <div class="col-lg-6 col-5 text-right">
                         <a href="{{ url('create_employee') }}" class="btn btn-sm btn-neutral">Add Employee</a>
                     </div>
@@ -63,10 +63,13 @@
                                             <b>{{ $user->name_employee }}</b>
                                         </td>
                                         <td>{{ $user->name_position}}</td>
-                                        <td>{{ $user->name}}</td>
+                                        <td>
+                                            @foreach ($user->roles as $role)
+                                                {{ $role->name }}
+                                            @endforeach
+                                        </td>
                                         <td>{{ $user->address}}</td>
                                         <td>{{ $user->contact}}</td>
-                                        <!-- <td>Front-end</td> -->
                                         {{-- @can('Actions Employee') --}}
                                         <td class="table-actions">
                                             {{-- @can('Edit Employee') --}}

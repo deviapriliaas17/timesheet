@@ -40,6 +40,19 @@
                                         </div>
                                     @endif
                                 </div>
+                                <div class="form-group">
+                                  <label class="form-control-label text-align-center"
+                                      for="permission_category">Category</label>
+                                  <select class="form-control small " id="permission_category"
+                                      name="permission_category">
+                                      @foreach ($permissions_category as $key => $value)
+                                          <option value="{{ $key }}"
+                                              {{ $key == $category ? 'selected' : '' }}>
+                                              {{ $value }}
+                                          </option>
+                                      @endforeach
+                                  </select>
+                              </div>
                             </div>
                         </div>
                 </div>
@@ -79,6 +92,7 @@
           <tr class="text-center">
             <th>Name</th>
             <th>Guard Name</th>
+            <th>Category</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -87,6 +101,7 @@
           <tr class="text-center">
             <td>{{ $permission->name}}</td>
             <td>{{ $permission->guard_name}}</td>
+            <td>{{ $permission->category}}</td>
             <td class="table-actions">
               <a type="button" class="table-action" data-mypermission="{{ $permission->name }}" data-permissionid="{{ $permission->id }}" data-toggle="modal"
                 data-target="#editPermission">
