@@ -57,7 +57,7 @@
                                 <tr class="date text-center" id="datepicker" name="date" data-date-format="dd-mm-yyyy">
 
                                     @foreach($dates as $day)
-                                <th scope="col">
+                                    <th scope="col">
                                         {{ $day }}
                                     </th>
                                     @endforeach
@@ -75,14 +75,26 @@
                                         <div>
                                             <input  type="hidden" name="project_location_code[]" value="{{ $attendance->project_location_code }}">
                                             <input  type="hidden" name="day[]" value="{{ $day }}">
-                                                @if(!in_array($day, $res[$attendance->project_location_code]))
+                                            @if(!in_array($day, $res[$attendance->project_location_code]))
+                                                    @can("Create Timesheet")
                                                     <a href="{{ url('/attendance/create/'.$attendance->project_location_code.'/'.$day) }}">
                                                         <i class="fas fa-edit text-primary"></i>
                                                     </a>
+                                                    @else
+                                                    <a href="#" style="pointer-events: none">
+                                                        <i class="fas fa-edit text-primary"></i>
+                                                    </a>
+                                                    @endcan
                                                 @else
+                                                    @can("Edit Timesheet")
                                                     <a href="{{ url('/attendance/'.$attendance->project_location_code.'/'.$day.'/edit') }}">
                                                         <i class="fas fa-edit text-danger"></i>
                                                     </a>
+                                                    @else
+                                                    <a href="#" style="pointer-events: none">
+                                                        <i class="fas fa-edit text-danger"></i>
+                                                    </a>
+                                                    @endcan
                                                 @endif
                                             </div>
                                         </td>

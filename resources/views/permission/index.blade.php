@@ -52,7 +52,7 @@
                                           </option>
                                       @endforeach
                                   </select>
-                              </div>
+                                </div>
                             </div>
                         </div>
                 </div>
@@ -93,7 +93,9 @@
             <th>Name</th>
             <th>Guard Name</th>
             <th>Category</th>
+            @canany(['Edit Permission','Delete Permission'])
             <th>Actions</th>
+            @endcanany
           </tr>
         </thead>
         <tbody>
@@ -103,13 +105,17 @@
             <td>{{ $permission->guard_name}}</td>
             <td>{{ $permission->category}}</td>
             <td class="table-actions">
-              <a type="button" class="table-action" data-mypermission="{{ $permission->name }}" data-permissionid="{{ $permission->id }}" data-toggle="modal"
+              @can("Edit Permission")
+              <a type="button" class="table-action" data-mypermission="{{ $permission->name }}" data-category="{{ $permission->category }}" data-permissionid="{{ $permission->id }}" data-toggle="modal"
                 data-target="#editPermission">
                 <i class="fas fa-user-edit text-primary"></i>
-            </a>
+              </a>
+              @endcan
+              @can("Delete Permission")
               <a href="/permission/{{ $permission->id }}" class="table-action table-action-delete text-danger" data-toggle="tooltip" data-original-title="Delete">
                 <i class="fas fa-trash"></i>
-            </a>
+              </a>
+              @endcan
             </td>
           </tr>
           @endforeach
@@ -135,15 +141,32 @@ aria-labelledby="editModal" aria-hidden="true">
         <div class="modal-body">
             <form method="post" action="{{ route('updatePermission') }}" enctype="multipart/form-data">
                 {{ csrf_field() }}
-                <div class="row">
-                    <div class="col text-left">
-                        <div class="form-group">
-                            <input type="hidden" name="permission_id" id="permission_id" value="">
-                            <label for="permission">Permission</label>
-                            <input type="text" class="form-control" name="permission" id="permission">    
-                        </div>        
-                    </div>
+          <div class="row">
+            <div class="col text-left">
+                <div class="form-group">
+                      <input type="hidden" name="permission_id" id="permission_id" value="">
+                      <label for="permission">Permission</label>
+                      <input type="text" class="form-control" name="permission" id="permission">    
                 </div>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col text-left">
+                <div class="form-group">
+                  <label class="form-control-label text-align-center"
+                      for="permission_category">Category</label>
+                  <select class="form-control small " id="permission_category"
+                      name="permission_category">
+                      @foreach ($permissions_category as $key => $value)
+                          <option value="{{ $key }}"
+                              {{ $key == $category ? 'selected' : '' }}>
+                              {{ $value }}
+                          </option>
+                      @endforeach
+                  </select>
+                </div>        
+            </div>
+          </div>        
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

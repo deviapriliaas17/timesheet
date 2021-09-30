@@ -53,15 +53,21 @@
                                             @endif
                                         </div>
                                     </div>
-                                </div>                                
+                                </div>     
+                                <div class="row ml-4">
+                                    <div class="col-sm-3">
+                                        <input class="custom-control-input" id="checkAll" type="checkbox">
+                                        <label class="custom-control-label" for="checkAll">Check All</label>
+                                    </div>
+                                </div> <br>                           
                                 @foreach($category as $c)
                                 <h3>{{ $c->category }}</h3>
                                 <div class="custom-control custom-checkbox">
                                     <div class="row ml-4">
                                         @foreach($c->permission as $p)
                                         <div class="col-sm-3">
-                                            <input class="custom-control-input" name="permission[]" id="{{ $p->name }}" value="{{ $p->name }}" type="checkbox"  @if($p->check) checked @endif>
-                                            <label class="custom-control-label" for="{{ $p->name }}">{{ $p->name }}</label>
+                                            <input class="permission_checked" name="permission[]" id="{{ $p->name }}" value="{{ $p->name }}" type="checkbox"  @if($p->check) checked @endif>
+                                            <label for="{{ $p->name }}">{{ $p->name }}</label>
                                         </div>
                                         @endforeach
                                     </div>

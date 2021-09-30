@@ -46,8 +46,10 @@ class RoleController extends Controller
         $idRole = Role::where('name', $role->name)->pluck('id')->first();
         $role = Role::find($idRole);
         
-        foreach($request->permission as $p){
-            $role->givePermissionTo($p);
+        if($request->permission){
+            foreach($request->permission as $p){
+                $role->givePermissionTo($p);
+            }
         }
 
         return redirect('/role');
@@ -56,7 +58,7 @@ class RoleController extends Controller
     public function edit($id)
     {
         $category = Permission::select('category')->groupBy('category')->get();
-        
+                
         $role = Role::find($id);
 
         foreach($category as $key => $value){
@@ -88,8 +90,10 @@ class RoleController extends Controller
         $idRole = Role::where('name', $role->name)->pluck('id')->first();
         $role = Role::find($idRole);
 
-        foreach($request->permission as $p){
-            $role->givePermissionTo($p);
+        if($request->permission){
+            foreach($request->permission as $p){
+                $role->givePermissionTo($p);
+            }
         }
 
         return redirect('/role');

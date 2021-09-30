@@ -43,7 +43,9 @@
             <thead class="thead-light">
               <tr class="text-center">
                 <th>Role</th>
+                @canany(['Edit Role','Delete Role'])
                 <th>Actions</th>
+                @endcanany
               </tr>
             </thead>
             <tbody>
@@ -51,12 +53,16 @@
               <tr class="text-center">
                 <td>{{ $role->name }}</td>
                 <td class="table-actions">
+                  @can("Edit Role")
                   <a href="{{ url('/role/'.$role->id.'/edit') }}">
                     <i class="fas fa-user-edit text-primary"></i>
                   </a>
+                  @endcan
+                  @can("Delete Role")
                   <a href="/role/{{ $role->id }}" class="table-action table-action-delete text-danger" data-toggle="tooltip" data-original-title="Delete">
                     <i class="fas fa-trash"></i>
                   </a>
+                  @endcan
                 </td>
               </tr>
               @endforeach

@@ -14,10 +14,12 @@
                     </div>
                     <div class="col-lg-6 col-5 text-right">
                         <!-- Button trigger modal -->
+                        @can("Create Project")
                         <button type="button" class="btn btn-sm btn-neutral" data-toggle="modal"
                             data-target="#projectModal">
                             Add Project
                         </button>
+                        @endcan
                         <!-- Modal Add Project-->
                         <div class="modal fade" id="projectModal" tabindex="-1" role="dialog"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -55,44 +57,6 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- button Filters --}}
-                        <button type="button" class="btn btn-sm btn-neutral" data-toggle="modal"
-                            data-target="#filtersModal">
-                            Filters
-                        </button>
-                        <!-- Modal Filters -->
-                        <div class="modal fade" id="filtersModal" tabindex="-1" role="dialog"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Filters</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form method="post" action="" enctype="multipart/form-data">
-                                            {{ csrf_field() }}
-                                            <div class="row">
-                                                <div class="col text-left">
-                                                    <div class="form-group">
-                                                        <label for="name=project" class="form-control-label">Project
-                                                            Name</label>
-                                                        <input type="text" id="name-project" class="form-control"
-                                                            name="name" placeholder="Project name..">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Save</button>
-                                    </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -118,24 +82,30 @@
                     <div class="table-responsive">
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
-                                <tr> 
+                                <tr class="text-center"> 
                                     <!-- <th>Code Project</th> -->
                                     <th>Project Name</th>
-                                    <th style="width:10px">Actions</th>
+                                    @canany(['Edit Project','Delete Project'])
+                                    <th>Actions</th>
+                                    @endcanany
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($projects as $project )
-                                    <tr>
+                                    <tr class="text-center">
                                         <td>{{ $project->project_name}}</td>
                                         <td class="table-actions">
+                                            @can("Edit Project")
                                             <a type="button" class="table-action" data-myproject="{{ $project->project_name }}" data-projectid="{{ $project->id }}" data-toggle="modal"
                                                 data-target="#editProject">
                                                 <i class="fas fa-user-edit text-primary"></i>
                                             </a>
+                                            @endcan
+                                            @can("Delete Project")
                                             <a href="/project/{{ $project->id }}" class="table-action table-action-delete text-danger" data-toggle="tooltip" data-original-title="Delete">
                                                 <i class="fas fa-trash"></i>
                                             </a>
+                                            @endcan
                                         </td>
                                     </tr>
                                     @endforeach

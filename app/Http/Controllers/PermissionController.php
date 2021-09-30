@@ -28,12 +28,12 @@ class PermissionController extends Controller
         $permission->name = $request->input('permission');
         $permission->guard_name = 'web';
         $permission->category = $request->input('permission_category');
-
+        
         $permission->save();
-
+        
         return redirect('/permission')->with('success','Permission data has been successfully added!');
     }
-
+    
     public function update(Request $request)
     {
         $request->validate([
@@ -42,6 +42,7 @@ class PermissionController extends Controller
         
         $permission = Permissions::findOrFail($request->permission_id);
         $permission->name = $request->input('permission');
+        $permission->category = $request->input('permission_category');
 
         $permission->update();
 
