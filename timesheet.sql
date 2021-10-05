@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 28, 2021 at 10:55 AM
+-- Generation Time: Sep 30, 2021 at 11:23 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.8
 
@@ -106,8 +106,10 @@ CREATE TABLE `model_has_roles` (
 --
 
 INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
-(1, 'App\\User', 1),
-(2, 'App\\User', 2);
+(2, 'App\\User', 2),
+(2, 'App\\User', 22),
+(17, 'App\\User', 1),
+(17, 'App\\User', 16);
 
 -- --------------------------------------------------------
 
@@ -210,7 +212,8 @@ CREATE TABLE `projects` (
 
 INSERT INTO `projects` (`id`, `project_code`, `project_name`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 (1, 'rkg', 'Sinergi', NULL, NULL, '2021-09-03 02:48:16', '2021-09-24 00:14:53'),
-(2, 'bSM', 'PI', NULL, NULL, '2021-09-05 19:25:55', '2021-09-23 02:41:04');
+(2, 'bSM', 'PI', NULL, NULL, '2021-09-05 19:25:55', '2021-09-23 02:41:04'),
+(12, 'Vcy', 'Sampoerna Mild', NULL, NULL, '2021-09-30 00:11:57', '2021-09-30 00:12:15');
 
 -- --------------------------------------------------------
 
@@ -255,7 +258,8 @@ CREATE TABLE `project_locations` (
 
 INSERT INTO `project_locations` (`id`, `project_code`, `project_location_code`, `location_name`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 (1, 'rkg', 'Mki', 'Salak', NULL, NULL, NULL, '2021-09-24 00:46:11'),
-(2, 'bSM', 'Asd', 'Darajat', NULL, NULL, NULL, '2021-09-24 00:21:15');
+(2, 'bSM', 'Asd', 'Darajat', NULL, NULL, NULL, '2021-09-24 00:21:15'),
+(8, 'Vcy', 'e2a5p', 'Makassar', NULL, NULL, '2021-09-30 00:14:16', '2021-09-30 00:14:16');
 
 -- --------------------------------------------------------
 
@@ -308,9 +312,8 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'web', '2021-08-30 21:54:10', '2021-08-30 21:54:10'),
 (2, 'user', 'web', '2021-08-30 21:54:10', '2021-08-30 21:54:10'),
-(14, 'test', 'web', '2021-09-28 01:53:27', '2021-09-28 01:53:27');
+(17, 'admin', 'web', '2021-09-28 20:55:54', '2021-09-28 20:55:54');
 
 -- --------------------------------------------------------
 
@@ -328,8 +331,54 @@ CREATE TABLE `role_has_permissions` (
 --
 
 INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
-(15, 14),
-(33, 14);
+(10, 2),
+(10, 17),
+(11, 2),
+(11, 17),
+(12, 2),
+(12, 17),
+(13, 2),
+(13, 17),
+(14, 2),
+(14, 17),
+(15, 2),
+(15, 17),
+(16, 2),
+(16, 17),
+(17, 2),
+(17, 17),
+(18, 2),
+(18, 17),
+(19, 2),
+(19, 17),
+(20, 2),
+(20, 17),
+(21, 2),
+(21, 17),
+(22, 2),
+(22, 17),
+(23, 2),
+(23, 17),
+(24, 2),
+(24, 17),
+(25, 2),
+(25, 17),
+(26, 2),
+(26, 17),
+(27, 2),
+(27, 17),
+(28, 2),
+(28, 17),
+(29, 2),
+(29, 17),
+(31, 2),
+(31, 17),
+(32, 2),
+(32, 17),
+(33, 2),
+(33, 17),
+(34, 2),
+(34, 17);
 
 -- --------------------------------------------------------
 
@@ -357,7 +406,7 @@ CREATE TABLE `timesheet` (
 INSERT INTO `timesheet` (`id`, `namecode`, `project_location_code`, `work`, `mandays`, `absent`, `notes`, `processed_datetime`, `created_at`, `updated_at`) VALUES
 (437, 'asd', 'Mki', 'x', NULL, NULL, NULL, '2021-09-25', '2021-09-19 19:55:51', '2021-09-19 19:55:51'),
 (438, 'edi', 'Mki', 'x', NULL, NULL, NULL, '2021-09-25', '2021-09-19 19:55:51', '2021-09-19 19:55:51'),
-(439, 'azi', 'Mki', NULL, 'x', NULL, NULL, '2021-09-25', '2021-09-19 19:55:51', '2021-09-19 19:55:51'),
+(439, 'azi', 'Mki', 'x', 'x', NULL, NULL, '2021-09-25', '2021-09-19 19:55:51', '2021-09-29 21:27:49'),
 (440, 'dsa', 'Asd', 'x', 'x', NULL, NULL, '2021-09-26', '2021-09-19 19:56:22', '2021-09-19 19:56:22'),
 (441, 'dew', 'Asd', NULL, NULL, 'x', NULL, '2021-09-26', '2021-09-19 19:56:22', '2021-09-19 19:56:22'),
 (442, 'dev', 'Asd', NULL, 'x', NULL, NULL, '2021-09-26', '2021-09-19 19:56:23', '2021-09-19 19:56:23'),
@@ -366,7 +415,10 @@ INSERT INTO `timesheet` (`id`, `namecode`, `project_location_code`, `work`, `man
 (445, 'azi', 'Mki', NULL, NULL, 'x', NULL, '2021-09-27', '2021-09-19 20:05:45', '2021-09-19 20:05:45'),
 (446, 'dsa', 'Asd', 'x', NULL, NULL, NULL, '2021-09-27', '2021-09-20 01:48:34', '2021-09-20 01:48:34'),
 (447, 'dew', 'Asd', 'x', 'x', NULL, NULL, '2021-09-27', '2021-09-20 01:48:35', '2021-09-20 01:48:35'),
-(448, 'dev', 'Asd', NULL, 'x', NULL, NULL, '2021-09-27', '2021-09-20 01:48:35', '2021-09-20 01:48:35');
+(448, 'dev', 'Asd', NULL, 'x', NULL, NULL, '2021-09-27', '2021-09-20 01:48:35', '2021-09-20 01:48:35'),
+(449, 'dsa', 'Asd', 'x', NULL, NULL, NULL, '2021-09-25', '2021-09-29 21:27:31', '2021-09-29 21:27:31'),
+(450, 'dew', 'Asd', 'x', NULL, NULL, NULL, '2021-09-25', '2021-09-29 21:27:31', '2021-09-29 21:27:31'),
+(451, 'dev', 'Asd', NULL, 'x', NULL, NULL, '2021-09-25', '2021-09-29 21:27:31', '2021-09-29 21:27:31');
 
 -- --------------------------------------------------------
 
@@ -399,7 +451,10 @@ INSERT INTO `timesheet_action` (`id`, `project_location_code`, `processed_dateti
 (219, 'Mki', '2021-09-27', 'Admin SST', '2021-09-19 20:05:46', '2021-09-19 20:05:46'),
 (220, 'Asd', '2021-09-27', 'Admin SST', '2021-09-20 01:48:35', '2021-09-20 01:48:35'),
 (221, 'Asd', '2021-09-27', 'Admin SST', '2021-09-20 01:48:35', '2021-09-20 01:48:35'),
-(222, 'Asd', '2021-09-27', 'Admin SST', '2021-09-20 01:48:35', '2021-09-20 01:48:35');
+(222, 'Asd', '2021-09-27', 'Admin SST', '2021-09-20 01:48:35', '2021-09-20 01:48:35'),
+(223, 'Asd', '2021-09-25', 'User SST', '2021-09-29 21:27:31', '2021-09-29 21:27:31'),
+(224, 'Asd', '2021-09-25', 'User SST', '2021-09-29 21:27:31', '2021-09-29 21:27:31'),
+(225, 'Asd', '2021-09-25', 'User SST', '2021-09-29 21:27:31', '2021-09-29 21:27:31');
 
 -- --------------------------------------------------------
 
@@ -409,7 +464,6 @@ INSERT INTO `timesheet_action` (`id`, `project_location_code`, `processed_dateti
 
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
-  `role_id` int(11) DEFAULT NULL,
   `name_employee` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `namecode` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -427,14 +481,16 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `role_id`, `name_employee`, `namecode`, `email`, `position_code`, `address`, `contact`, `avatar`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Admin SST', 'asd', 'admin@sst.test', '3', 'Titan', '08', '1632369122.jpg', '$2y$10$KGuT4CR3x/GH.Q8BA7XFduFqG8lCcQ9Rzlwal.O8mADk1lwKVE1U6', 'ahQbDm9knOQ48gpRB65pV4gxLrE20T54vruN5ZdYcC8AGt36ei9qkSnO6i92', '2021-08-30 21:54:10', '2021-08-30 21:54:10'),
-(2, 2, 'User SST', 'dsa', 'user@sst.test', '2', 'Arum', '081', '1632369122.jpg', '$2y$10$4UJJd070hNucIdVmQsMl8.Fblql2yvVxGHLq1R9DagWRXOiJVtoaS', 'lhtkx5cKXidItga47HDTx2rxLlkZH1rU7VcUuRR4S3nMQgcQISIyQ1XBS6T9', '2021-08-30 21:54:10', '2021-08-30 21:54:10'),
-(3, 2, 'Edo', 'edi', 'edo@sst.id', '1', 'PCI', '089', '1632369122.jpg', '', NULL, NULL, NULL),
-(4, 2, 'Azir', 'azi', 'azir@sst.id', '2', 'Ciracas', '086', '1632369122.jpg', '', NULL, NULL, NULL),
-(5, 2, 'Dewa', 'dew', 'dewa@sst.id', '1', 'Kop', '085', '1632369122.jpg', '', NULL, NULL, NULL),
-(6, 2, 'Devi', 'dev', 'devi@sst.id', '2', 'Ciruas', '20', '1632369122.jpg', '', NULL, NULL, NULL),
-(7, 2, 'Dimasas', '6YNdL', 'dimas@gmail.com', '1', 'BSD', '085216201512', '1632475233.png', '123456', NULL, '2021-09-22 20:52:02', '2021-09-24 02:20:33');
+INSERT INTO `users` (`id`, `name_employee`, `namecode`, `email`, `position_code`, `address`, `contact`, `avatar`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Admin SST', 'asd', 'admin@sst.test', '3', 'Titan', '08', '1632899954.png', '$2y$10$cmhApClvfgAclBn3nwEs1eB9BwqGj1DN3nIr/Dn5ne09BgwGntHeq', 'HXCORXN62X785Sa0NTlsC5bLEC7HWpPrEY9P0krFvR7hJOEZDVsUJWmVJXoW', '2021-08-30 21:54:10', '2021-09-29 02:19:33'),
+(2, 'User SST', 'dsa', 'user@sst.test', '2', 'Arum', '081', '1632369122.jpg', '$2y$10$4UJJd070hNucIdVmQsMl8.Fblql2yvVxGHLq1R9DagWRXOiJVtoaS', 'XUsQOGOGa11fA5RhaeAiOhU73OGbzXDxT0eSo4GJ1TKG9QOaFwCbEa7PbjNT', '2021-08-30 21:54:10', '2021-08-30 21:54:10'),
+(3, 'Edo', 'edi', 'edo@sst.id', '1', 'PCI', '089', '1632369122.jpg', '', NULL, NULL, NULL),
+(4, 'Azir', 'azi', 'azir@sst.id', '2', 'Ciracas', '086', '1632369122.jpg', '', NULL, NULL, NULL),
+(5, 'Dewa', 'dew', 'dewa@sst.id', '1', 'Kop', '085', '1632369122.jpg', '', NULL, NULL, NULL),
+(6, 'Devi', 'dev', 'devi@sst.id', '2', 'Ciruas', '20', '1632369122.jpg', '', NULL, NULL, NULL),
+(10, 'test', 'bLiVy', 'test@gmail.com', NULL, NULL, NULL, 'user.jpg', '$2y$10$WLGt3YlFexezlHYZ1dSGd.RnPAo1IogZp9I.UI26Mpm1f.YvpZGuW', '5IoYmAt7buaABzfUEzUKUYRYspkkQNvt6bhJL5XrZWzA0fOZgNsRICsCUF99', '2021-09-28 02:18:33', '2021-09-28 02:18:33'),
+(16, 'cek', 'jMqqW', 'cek@gmail.com', '2', 'cek', '231233', 'user.jpg', '$2y$10$77Ya2sKhg8oKLUVQuOvAUends0mx7JIewJ1iatj7CjAPx9uVPd4MS', NULL, '2021-09-28 23:14:24', '2021-09-29 02:18:31'),
+(22, 'Nescafe Mocha', 'asAkv', 'nescafe23@gmail.com', '2', 'Alfamart Titan Arum', '123456781', '1632985825.jpg', '$2y$10$Q//1pIp8OGzz6svz3rcEjugEfwELVrFg5LqmtcELMDOrBMBQNkNxG', NULL, '2021-09-30 00:09:10', '2021-09-30 00:10:25');
 
 -- --------------------------------------------------------
 
@@ -598,7 +654,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `positions`
@@ -610,7 +666,7 @@ ALTER TABLE `positions`
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `project_absents`
@@ -622,7 +678,7 @@ ALTER TABLE `project_absents`
 -- AUTO_INCREMENT for table `project_locations`
 --
 ALTER TABLE `project_locations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `project_location_employees`
@@ -640,25 +696,25 @@ ALTER TABLE `project_pics`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `timesheet`
 --
 ALTER TABLE `timesheet`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=449;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=452;
 
 --
 -- AUTO_INCREMENT for table `timesheet_action`
 --
 ALTER TABLE `timesheet_action`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=223;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=226;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `user_project_locations`
