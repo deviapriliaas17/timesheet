@@ -8,101 +8,122 @@
       <div class="container-fluid">
         <div class="header-body">
           <div class="row align-items-center py-4">
-            <div class="col-lg-6 col-7">
-              <h6 class="h2 text-white d-inline-block mb-0">Dashboard</h6>
+            <div class="col-lg-9 col-9">
+              <h6 class="h2 text-white d-inline-block mb-0">Dashboards</h6>
+              {{-- <h6 class="h2 text-white d-inline-block mb-0">{{ Auth::user()->name_employee }}</h6> --}}
             </div>
-            <div class="col-lg-6 col-5 text-right">
-              <a href="#" class="btn btn-sm btn-neutral">New</a>
-              <a href="#" class="btn btn-sm btn-neutral">Filters</a>
+            <div class="col=lg-3 col-3 text-right">
+              <div class="input-group">
+                    <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                    </div>
+                    <input name="date" id="date" data-date-format="yyyy-mm-dd" class="form-control datepicker"
+                        placeholder="Month" type="text">
+                </div>
+              {{-- <a href="#" class="btn btn-sm btn-neutral">New</a>
+              <a href="#" class="btn btn-sm btn-neutral">Filters</a> --}}
             </div>
           </div>
           <!-- Card stats -->
           <div class="row">
-            <div class="col-xl-3 col-md-6">
-              <div class="card card-stats">
-                <!-- Card body -->
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Total traffic</h5>
-                      <span class="h2 font-weight-bold mb-0">350,897</span>
-                    </div>
-                    <div class="col-auto">
-                      <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
-                        <i class="ni ni-active-40"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
-                  </p>
-                </div>
-              </div>
+            <div class="col-xl-3 col-md-6 text-center">
+                <span class="avatar avatar-lg rounded-circle" style="width:150px; height:150px">
+                  <img src="{{ asset('uploads/employee/' . Auth::user()->avatar) }}">
+                </span>
             </div>
             <div class="col-xl-3 col-md-6">
               <div class="card card-stats">
                 <!-- Card body -->
                 <div class="card-body">
                   <div class="row">
-                    <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
-                      <span class="h2 font-weight-bold mb-0">2,356</span>
-                    </div>
-                    <div class="col-auto">
-                      <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
-                        <i class="ni ni-chart-pie-35"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-              <div class="card card-stats">
-                <!-- Card body -->
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
-                      <span class="h2 font-weight-bold mb-0">924</span>
-                    </div>
-                    <div class="col-auto">
-                      <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
-                        <i class="ni ni-money-coins"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-              <div class="card card-stats">
-                <!-- Card body -->
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
-                      <span class="h2 font-weight-bold mb-0">49,65%</span>
+                    <div class="col ">
+                      @foreach($times as $t)
+                            <tr class="text-center">
+                                <td>{{ date('', strtotime($t->date)) }}</td>
+                              </tr>
+                            @endforeach
+                      {{-- <h5 class="card-title text-uppercase text-muted mb-0">Oktober</h5> --}}
+                      @foreach($employees as $em)
+                        @if ($em->name_employee == Auth::user()->name_employee )   
+                          <span class="h3 font-weight-bold mb-0">Mandays</span> <br>
+                          <span class="h1 font-weight-bold mb-0 ml-6" style="font-size:65px">{{ $em->mandaysCount }}</span>                             
+                        @endif
+                      @endforeach
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
-                        <i class="ni ni-chart-bar-32"></i>
+                        <i class="ni ni-briefcase-24"></i>
                       </div>
                     </div>
                   </div>
-                  <p class="mt-3 mb-0 text-sm">
+                  {{-- <p class="mt-3 mb-0 text-sm">
                     <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
                     <span class="text-nowrap">Since last month</span>
-                  </p>
+                  </p> --}}
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <!-- Card body -->
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      @foreach($times as $t)
+                            <tr class="text-center">
+                                <td>{{ date('', strtotime($t->date)) }}</td>
+                              </tr>
+                            @endforeach
+                      {{-- <h5 class="card-title text-uppercase text-muted mb-0">Oktober</h5> --}}
+                      @foreach($employees as $em)
+                        @if ($em->name_employee == Auth::user()->name_employee ) 
+                          <span class="h3 font-weight-bold mb-0">Working</span> <br> 
+                          <span class="h1 font-weight-bold mb-0 ml-6" style="font-size: 65px">{{ $em->workCount }}</span>                        
+                        @endif
+                      @endforeach
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-gradient-success text-white rounded-circle shadow">
+                        <i class="ni ni-check-bold"></i>
+                      </div>
+                    </div>
+                  </div>
+                  {{-- <p class="mt-3 mb-0 text-sm">
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                    <span class="text-nowrap">Since last month</span>
+                  </p> --}}
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <!-- Card body -->
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      @foreach($times as $t)
+                            <tr class="text-center">
+                                <td>{{ date('', strtotime($t->date)) }}</td>
+                              </tr>
+                            @endforeach
+                      {{-- <h5 class="card-title text-uppercase text-muted mb-0">Oktober</h5> --}}
+                      @foreach($employees as $em)
+                        @if ($em->name_employee == Auth::user()->name_employee ) 
+                          <span class="h3 font-weight-bold mb-0">Absent</span> <br>
+                          <span class="h1 font-weight-bold mb-0 ml-6" style="font-size: 65px">{{ $em->absentCount }}</span>                                
+                        @endif
+                      @endforeach
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-gradient-danger text-white rounded-circle shadow">
+                        <i class="ni ni-fat-remove"></i>
+                      </div>
+                    </div>
+                  </div>
+                  {{-- <p class="mt-3 mb-0 text-sm">
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                    <span class="text-nowrap">Since last month</span>
+                  </p> --}}
                 </div>
               </div>
             </div>
@@ -112,9 +133,9 @@
     </div>
 
 <!-- PAGE CONTENT -->
-<div class="container-fluid mt--6">
+{{-- <div class="container-fluid mt--6">
       <div class="row">
-        <div class="col-xl-8">
+        <div class="col-xl-12">
           <div class="card bg-default">
             <div class="card-header bg-transparent">
               <div class="row align-items-center">
@@ -149,23 +170,6 @@
             </div>
           </div>
         </div>
-        <div class="col-xl-4">
-          <div class="card">
-            <div class="card-header bg-transparent">
-              <div class="row align-items-center">
-                <div class="col">
-                  <h6 class="text-uppercase text-muted ls-1 mb-1">Performance</h6>
-                  <h5 class="h3 mb-0">Total orders</h5>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <!-- Chart -->
-              <div class="chart">
-                <canvas id="chart-bars" class="chart-canvas"></canvas>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
+</div> --}}
 @endsection

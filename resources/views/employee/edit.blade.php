@@ -118,12 +118,22 @@
                                         </div>
                                     </div>
                                 </div>
-                                    <div class="row justify-content-center mt-1">
-                                        <img class="avatar rounded-circle" src="{{ asset('uploads/employee/' . $user->avatar) }}"/>
-
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label text-align-center"
+                                            for="project_location">Project Location</label>
+                                            <select class="form-control small" id="editProjectLocation"
+                                            name="project_location">
+                                            @foreach ($project_locations as $key => $value)
+                                            <option value="{{ $key }}" @if($key == $user->project_location_code) selected @endif>
+                                                    {{ $value }}
+                                            </option>
+                                            @endforeach
+                                            </select>
+                                        </div>
                                     </div>
-                                    <br>
-                                    <div class="row justify-content-center">
+                                    <div class="col-sm-6 mt-4">
                                         <div class="form-group">
                                             <input type="file" class="form-control-file @if ($errors->has('avatar')) is-invalid @endif" name="avatar" id="AvatarFile"
                                             aria-describedby="fileHelp" value="{{ old('avatar') }}" <small id="fileHelp"
@@ -131,17 +141,18 @@
                                             not be motre than 2MB</small>
                                             @if ($errors->has('avatar'))
                                                 <div class="invalid-feedback">{{ $errors->first('avatar') }}</div>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="text-right mt-4">
-                                        <button type="submit" name="submit" class="btn btn-large btn-primary">Edit
-                                            Employee</button>
+                                                @endif
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                                    <div class="text-right mt-4">
+                                        <button type="submit" name="submit" class="btn btn-large btn-primary">Edit
+                                            Employee</button>
+                                    </div>
+                            </div>
                         </div>
+                    </form>
+                    </div>
                     </div>
                 </div>
         </div>

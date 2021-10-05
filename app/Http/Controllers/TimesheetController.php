@@ -37,7 +37,7 @@ class TimesheetController extends Controller
                 ->join('projects','projects.project_code','=','project_locations.project_code')
                 // ->join('user_project_locations','user_project_locations.project_location_code','=','project_locations.project_location_code')
                 ->paginate();
-                
+
         
         // status timesheet
         $checkProject = ProjectLocation::pluck('project_location_code');

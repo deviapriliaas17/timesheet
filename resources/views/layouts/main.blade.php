@@ -46,12 +46,12 @@
         <div class="collapse navbar-collapse" id="sidenav-collapse-main">
           <!-- Nav items -->
           <ul class="navbar-nav">
-            <!-- <li class="nav-item">
+            <li class="nav-item">
               <a class="nav-link" href="{{ url('/dashboard') }}">
                 <i class="ni ni-shop text-primary"></i>
                 <span class="nav-link-text">Dashboards</span>
               </a>
-            </li> -->
+            </li>
             @can("View Timesheet")
             <li class="nav-item">
               <a class="nav-link" href="{{ url('/timesheet') }}">
@@ -166,10 +166,10 @@
               <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="media align-items-center">
                   <span class="avatar avatar-sm rounded-circle">
-                    <img alt="Image placeholder" src="./assets/img/brand/sst.png">
+                    <img src="{{ asset('uploads/employee/' . Auth::user()->avatar) }}">
                   </span>
                   <div class="media-body  ml-2  d-none d-lg-block">
-                    {{-- <span class="mb-0 text-sm  font-weight-bold">{{ Auth::user()->name_employee }}</span> --}}
+                    <span class="mb-0 text-sm  font-weight-bold">{{ Auth::user()->name_employee }}</span>
                     <span class="mb-0 text-sm  font-weight-bold"></span>
                   </div>
                 </div>
@@ -261,6 +261,46 @@
       modal.find('.modal-body #permission_id').val(permission_id);
     })
   </script>
+
+  {{-- create project dan project location --}}
+  <script>
+    $(document).ready(function () {
+    $('#createProject').on('click', function (e){
+
+      var e = document.getElementById("createProject");
+      var strProject = e.value;
+
+      });
+    })
+
+    $('#createProject').on('change', function(){
+      var project_type = $(this).val();
+      console.log(project_type)
+
+      if (project_type) {
+        $.ajax({
+          url: APP_URL + '/create_employee/'+project_type,
+          dataType: 'json',
+          type: 'GET',
+          success: function(data) {
+            if (data) {
+              $('.#createProjectLocation').empty();
+              $('#createProjectLocation').append('<option value""></option>');
+              for (var i = 0; i < data.length; i++) {
+                $('#createProjectLocation').append('<option value="'+data[i].id+'">' + data[i].code + " - " + data[i].description + '</option>');
+              }
+            } else {
+              $('#createProjectLocation').empty();
+            }
+          }
+        })
+      } else {
+        $('#createProjectLocation').empty();
+      }
+    });
+  </script>
+
+  
   <script>
     $(document).ready(function () {
 

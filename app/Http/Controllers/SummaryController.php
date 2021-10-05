@@ -14,7 +14,7 @@ class SummaryController extends Controller
         $location_project = ProjectLocation::all();
         $location_project = ProjectLocation::pluck('location_name','project_location_code');
         $id = 2; 
-    
+        
         // timesheet for location_name, name_employee
        if($request->get('location_project')){
             $employees = DB::table('timesheet')
@@ -34,7 +34,6 @@ class SummaryController extends Controller
             ->orderBy('name_employee','location_name','ASC')
             ->get();
        }
-
         // timesheet for date
         $times = DB::table('timesheet')
                     ->select(DB::raw('(timesheet.processed_datetime) as date'))
@@ -76,7 +75,6 @@ class SummaryController extends Controller
                 $times[$key]->data[] = [] ;
             }   
         }
-        
 
         // dd($times);
         // foreach($employees as $key => $e){
@@ -90,7 +88,7 @@ class SummaryController extends Controller
         // dd($employees);
         // return view('summary.index', compact('data', 'location_project', 'id'));
         // dd($times);
-        return view('summary.index', compact('employees','times','location_project','id'));
+        return view('Summary.index', compact('employees','times','location_project','id'));
     }
 
 }

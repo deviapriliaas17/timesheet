@@ -42,12 +42,13 @@
                     <div class="table-responsive">
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
-                                <tr class="text-left">
-                                    <th>Employee Name</th>
+                                <tr class="text-center">
+                                    <th class="text-left">Employee Name</th>
                                     <th>Position</th>
                                     <th>Roles</th>
                                     <th>Address</th>
                                     <th>Contact</th>
+                                    <th>Project Location</th>
                                     @canany(['Edit Employee','Delete Employee'])
                                     <th>Actions</th>
                                     @endcanany
@@ -55,8 +56,8 @@
                             </thead>
                             <tbody>
                             @foreach ($data as $user)
-                                    <tr class="text-left">
-                                        <td class="table-user">
+                                    <tr class="text-center">
+                                        <td class="table-user text-left">
                                             <img src="{{ asset('uploads/employee/' . $user->avatar) }}"
                                                 class="avatar rounded-circle mr-3">
                                             <b>{{ $user->name_employee }}</b>
@@ -69,6 +70,7 @@
                                         </td>
                                         <td>{{ $user->address}}</td>
                                         <td>{{ $user->contact}}</td>
+                                        <td>{{ $user->project_location_code}}</td>
                                         {{-- @can('Actions Employee') --}}
                                         <td class="table-actions">
                                             @can("Edit Employee")
