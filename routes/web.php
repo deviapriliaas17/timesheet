@@ -29,6 +29,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/dashboard','DashboardController@index')->name('dashboard');
+Route::post('/dashboard', 'DashboardController@search')->name('search');
 
 // TIMESHEET
 Route::get('/timesheet','TimesheetController@index')->name('timesheet');

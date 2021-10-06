@@ -26,6 +26,8 @@ class EmployeeController extends Controller
                 ->join('user_project_locations','user_project_locations.namecode','=','users.namecode')
                 ->select('users.name_employee','positions.name_position','users.address','users.contact','users.id','user_project_locations.project_location_code','users.avatar')
                 ->get();
+
+        // dd($data[1]->name_employee);
                 
         return view('employee.index', compact('data'));
     }
