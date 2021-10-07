@@ -114,6 +114,7 @@ class EmployeeController extends Controller
         
         public function update(Request $request, $id)
         {   
+            dd($request);
             $request->validate(
                 [
                     'name_employee' => 'required',

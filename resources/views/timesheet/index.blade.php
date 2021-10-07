@@ -27,15 +27,13 @@
                             </div>
                             <div class="col-3 text-right">
                                 <div class="form-group">
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                      <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
-                                                </div>
-                                                <input name="date" id="date" data-date-format="yyyy-mm-dd" class="form-control datepicker"
-                                                    placeholder="Month" type="text">
-                                            </div>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                                         </div>
+                                        <input name="date" id="date" data-date-format="yyyy-mm-dd" class="form-control datepicker"
+                                            placeholder="Month" type="text">
+                                    </div>
                                 </div>
                             </div>
                         </div>

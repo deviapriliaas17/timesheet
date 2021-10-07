@@ -8,16 +8,16 @@
       <div class="container-fluid">
         <div class="header-body">
           <div class="row align-items-center py-4">
-            <div class="col-lg-5 col-9">
-              <h6 class="h2 text-white d-inline-block mb-0">Dashboards</h6>
+            <div class="col-lg-6 col-9">
+              <h2 class="text-white d-inline-block mt--5 mb-0">Dashboards</h2>
               {{-- <h6 class="h2 text-white d-inline-block mb-0">{{ Auth::user()->name_employee }}</h6> --}}
             </div>
 
-            <div class="col-lg-7 col-3 text-right">
-                      <form action="{{ route('search') }}" method="POST">
+            <div class="col-lg-6 col-3 text-right">
+                      <form action="{{ route('dashboard') }}" method="post">
                       {{ csrf_field() }}
                   <div class="row">
-                      <div class="col-sm-5">
+                      <div class="col-sm-4 ml-6">
                           <div class="form-group">
                               {{-- <label class="form-control-label text-white" for="toDate">From
                               date</label> --}}
@@ -27,12 +27,12 @@
                                           <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                                       </div>
                                       <input name="fromDate" id="fromDate" data-date-format="yyyy-mm-dd" class="form-control datepicker"
-                                          placeholder="From date.." type="text">
+                                          placeholder="From date.." type="text" autocomplete="off">
                                   </div>
                               </div>
                           </div>
                       </div>
-                      <div class="col-sm-5">
+                      <div class="col-sm-4 ml--4">
                           <div class="form-group">
                               {{-- <label class="form-control-label text-white" for="toDate">To
                                       date</label> --}}
@@ -42,19 +42,19 @@
                                           <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                                       </div>
                                       <input name="toDate" id="toDate" data-date-format="yyyy-mm-dd" class="form-control datepicker"
-                                          placeholder="To date.." type="text">
+                                          placeholder="To date.." type="text" autocomplete="off">
                                   </div>
                               </div>
                           </div>
                       </div>
-                      <div class="col-sm-2 ml--3">
+                      <div class="col-sm-2 ml--4">
                           <button type="submit" name="filter" id="filter"
-                              class="btn btn-md btn-warning">Filter</button>
+                              class="btn btn-md btn-warning"><i class="fas fa-search"></i></button>
                       </div>
-                      {{-- <div class="col-sm-2 ml--2">
-                          <button type="submit" href="{{ url('/attendance_report') }}" name="refresh" id="refresh"
-                              class="btn btn-md btn-neutral">Refresh</button>
-                      </div> --}}
+                      <div class="col-sm-2 ml--4">
+                          <button type="submit" href="{{ url('/dashboard') }}" name="refresh" id="refresh"
+                              class="btn btn-md btn-neutral"><i class="fas fa-redo"></i></button>
+                      </div>
                   </div>
               </form>
             </div>
@@ -185,22 +185,22 @@
       <colgroup span="2"></colgroup>
       <colgroup span="2"></colgroup>
       
-      <thead class="thead-light">
+      <thead class="thead">
           <tr class="text-center">
-          <th rowspan="2">Date</th>
-          @foreach($employees as $em)
-            @if ($em->name_employee == Auth::user()->name_employee ) 
-              <th colspan="3" scope="colgroup">{{ $em->name_employee }}</th>
-            @endif
-          @endforeach
+            <th rowspan="2">Date</th>
+            @foreach($employees as $em)
+              @if ($em->name_employee == Auth::user()->name_employee ) 
+                <th colspan="3" scope="colgroup">{{ $em->name_employee }}</th>
+              @endif
+            @endforeach
           </tr>
           <tr class="text-center">
-          @foreach($employees as $em)
-            @if ($em->name_employee == Auth::user()->name_employee)
-            <th scope="col">Mandays</th>
-            <th scope="col">Working</th>
-            <th scope="col">Absent</th>
-            @endif
+            @foreach($employees as $em)
+              @if ($em->name_employee == Auth::user()->name_employee)
+                <th scope="col">Mandays</th>
+                <th scope="col">Working</th>
+                <th scope="col">Absent</th>
+              @endif
             @endforeach
           </tr>
       </thead>
