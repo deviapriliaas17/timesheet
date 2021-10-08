@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
+use App\{ProjectLocationEmployees, ProjectLocation};
 
 class User extends Authenticatable
 {
@@ -16,5 +17,17 @@ class User extends Authenticatable
     // protected $hidden = [
     //     'password', 'remember_token',
     // ];
+    
+    protected $appends = ['location_name'];
 
+    public function getLocationNameAttribute(){
+        if($this->attributes['namecode']){
+            $dataLocation  = ProjectLocationEmployees::where('namecode', $this->attributes['namecode'])->first();
+
+            $location = ProjectLocation::where('project_location_code', $dataLocation->project_location_code)->pluck('location_name')->first();
+            // $location = ProjectLocation::where('project_location_code', $dataLocation->project_location_code)->get();
+            return $location;
+        }
+
+    }
 }

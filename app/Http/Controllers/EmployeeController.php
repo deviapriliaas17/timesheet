@@ -24,11 +24,9 @@ class EmployeeController extends Controller
     {
         $data = User::join('positions','positions.id','=','users.position_code')
                 ->join('user_project_locations','user_project_locations.namecode','=','users.namecode')
-                ->select('users.name_employee','positions.name_position','users.address','users.contact','users.id','user_project_locations.project_location_code','users.avatar')
+                ->select('users.name_employee','users.namecode','positions.name_position','users.address','users.contact','users.id','user_project_locations.project_location_code','users.avatar')
                 ->get();
-
-        // dd($data[1]->name_employee);
-                
+        // dd($data);   
         return view('employee.index', compact('data'));
     }
 
@@ -66,7 +64,6 @@ class EmployeeController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
         $request->validate(
             [
                 'name_employee' => 'required',
@@ -114,7 +111,6 @@ class EmployeeController extends Controller
         
         public function update(Request $request, $id)
         {   
-            dd($request);
             $request->validate(
                 [
                     'name_employee' => 'required',
@@ -156,11 +152,9 @@ class EmployeeController extends Controller
             $role = Role::find($request->role);
             $user->assignRole($role->name);
 
-            // $userLocation = ProjectLocation::findOrFail($request);
-            
-            // $userLocation->namecode = $employee;
-            // $userLocation->project_location_code = $request->input('project_location');
-            // $userLocation->save();
+            ProjectLocationEmployees::where('namecode', $user->namecode)->update([
+                'project_location_code' => $request->project_location
+            ]);
 
             return redirect('/employee')->with('success', 'Successfully!');
     }

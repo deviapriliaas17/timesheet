@@ -70,7 +70,7 @@
                                         </td>
                                         <td>{{ $user->address}}</td>
                                         <td>{{ $user->contact}}</td>
-                                        <td>{{ $user->project_location_code}}</td>
+                                        <td>{{ $user->location_name}}</td>
                                         {{-- @can('Actions Employee') --}}
                                         <td class="table-actions">
                                             @can("Edit Employee")

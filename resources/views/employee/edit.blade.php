@@ -141,7 +141,7 @@
                                             not be motre than 2MB</small>
                                             @if ($errors->has('avatar'))
                                                 <div class="invalid-feedback">{{ $errors->first('avatar') }}</div>
-                                                @endif
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

@@ -160,10 +160,10 @@
                                                 <div class="form-group">
                                                     <input type="file" class="form-control-file @if ($errors->has('avatar')) is-invalid @endif" name="avatar" id="AvatarFile"
                                                     aria-describedby="fileHelp" value="{{ old('avatar') }}" <small id="fileHelp"
-                                                    class="form-text- text-muted"><h5>Please a valid image file. Size of image should
-                                                    not be more than 2MB</h5></small>
+                                                    class="form-text- text-muted">Please a valid image file. Size of image should
+                                                    not be more than 2MB</small>
                                                     @if ($errors->has('avatar'))
-                                                    <div class="invalid-feedback">{{ $errors->first('avatar') }}</div>
+                                                      <div class="invalid-feedback">{{ $errors->first('avatar') }}</div>
                                                     @endif
                                                 </div>
                                             </div>

@@ -17,7 +17,7 @@
                       <form action="{{ route('dashboard') }}" method="post">
                       {{ csrf_field() }}
                   <div class="row">
-                      <div class="col-sm-4 ml-6">
+                      <div class="col-sm-5 ml--4">
                           <div class="form-group">
                               {{-- <label class="form-control-label text-white" for="toDate">From
                               date</label> --}}
@@ -32,7 +32,7 @@
                               </div>
                           </div>
                       </div>
-                      <div class="col-sm-4 ml--4">
+                      <div class="col-sm-5 ml--4">
                           <div class="form-group">
                               {{-- <label class="form-control-label text-white" for="toDate">To
                                       date</label> --}}
@@ -47,11 +47,11 @@
                               </div>
                           </div>
                       </div>
-                      <div class="col-sm-2 ml--4">
+                      <div class="col-sm-1 ml--3">
                           <button type="submit" name="filter" id="filter"
                               class="btn btn-md btn-warning"><i class="fas fa-search"></i></button>
                       </div>
-                      <div class="col-sm-2 ml--4">
+                      <div class="col-sm-1 ml-4">
                           <button type="submit" href="{{ url('/dashboard') }}" name="refresh" id="refresh"
                               class="btn btn-md btn-neutral"><i class="fas fa-redo"></i></button>
                       </div>
