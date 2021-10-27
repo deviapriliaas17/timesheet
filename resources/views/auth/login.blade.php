@@ -122,7 +122,7 @@
                                     <button type="submit" class="btn btn-primary my-3">Login</button>
                                 </div>
                                 <div class="text-center mt-2">
-                                    <a href="#" class="text-primary"><small>Forgot password?</small></a>
+                                    <a href="{{ url('/password/reset') }}" class="text-primary"><small>Forgot password?</small></a>
                                 </div>
                             </form>
                         </div>

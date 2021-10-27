@@ -15,6 +15,13 @@
     </div>
 </div>
 
+@if (session('status'))
+        <div class="alert alert-success text-center">
+            {{ session('status') }}
+        </div>
+    @endif
+
+
 <div class="container-fluid mt--6">
         <div class="row">
             <div class="col">

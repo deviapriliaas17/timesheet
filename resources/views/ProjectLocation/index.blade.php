@@ -121,9 +121,15 @@
                                             </a>
                                             @endcan
                                             @can("Delete Project Location")
+                                            {{-- <a class="table-action table-action-delete text-danger deleteConfirmation" data-id="{{ $location->id }}"data-action="/project_location/{{ $location->id }}" onclick="deleteConfirmation({{ $location->id }})"  data-toggle="tooltip" data-original-title="Delete"> --}}
+                                                {{-- <button class="btn btn-danger btn-flat btn-sm remove-user" data-id="{{ $user->id }}" data-action="{{ route('users.destroy',$user->id) }}" onclick="deleteConfirmation({{$user->id}})"> Delete</button>  --}}
                                             <a href="/project_location/{{ $location->id }}" class="table-action table-action-delete text-danger" data-toggle="tooltip" data-original-title="Delete">
                                                 <i class="fas fa-trash"></i>
                                             </a>
+                                            {{-- <a href="" class="button text-danger" data-id="{{$location->id}}">
+                                                <i class="fas fa-trash"></i>
+                                            </a> --}}
+                                            {{-- <button class="btn btn-danger" onclick="deleteConfirmation({{$location->id}})">Delete</button> --}}
                                             @endcan
                                         </td>
                                     </tr>
@@ -135,17 +141,15 @@
             </div>
         </div>
     </div>
-
-@endsection
-
-{{-- modal edit --}}
-<div class="modal fade" id="editLocation" tabindex="-1" role="dialog"
-aria-labelledby="editModal" aria-hidden="true">
-<div class="modal-dialog" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="edtiModal">Edit Project</h5>
-            <button type="button" class="close" data-dismiss="modal"
+    
+    {{-- modal edit --}}
+    <div class="modal fade" id="editLocation" tabindex="-1" role="dialog"
+    aria-labelledby="editModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="edtiModal">Edit Project</h5>
+                <button type="button" class="close" data-dismiss="modal"
                 aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -167,26 +171,69 @@ aria-labelledby="editModal" aria-hidden="true">
                     <div class="col text-left">
                         <div class="form-group">
                             <label class="form-control-label text-align-center"
-                                for="project_name">Project Name</label>
-                            <select class="form-control small " id="project_code"
-                                name="project_code">
-                                @foreach ($project as $key => $value)
+                            for="project_name">Project Name</label>
+                                <select class="form-control small " id="project_code"
+                                    name="project_code">
+                                    @foreach ($project as $key => $value)
                                     <option value="{{ $key }}"
-                                        {{ $key == $id_project ? 'selected' : '' }}>
-                                        {{ $value }}
-                                    </option>
+                                    {{ $key == $id_project ? 'selected' : '' }}>
+                                    {{ $value }}
+                                </option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"
+                    data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Edit</button>
+            </div>
+            </form>
         </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary"
-                data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Edit</button>
-        </div>
-        </form>
     </div>
-</div>
-</div>
+    </div>
+
+    {{-- <script type="text/javascript">
+        function deleteConfirmation(id) {
+            swal({
+                title: "Delete?",
+                text: "Please ensure and then confirm!",
+                type: "warning",
+                showCancelButton: !0,
+                confirmButtonText: "Yes, delete it!",
+                cancelButtonText: "No, cancel!",
+                reverseButtons: !0
+            }).then(function (e) {
+                console.log(e);
+                if (e.value === true) {
+                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    
+                    $.ajax({
+                        type: 'GET',
+                        url: "{{url('/project_location')}}/" + id,
+                        data: {_token: CSRF_TOKEN},
+                        dataType: 'JSON',
+                        success: function () {
+                            console.log(results)
+                            if (results.success === true) {
+                                swal("Done!", results.message, "success");
+                            } else {
+                                swal("Error!", results.message, "error");
+                            }
+                        }
+                    });
+    
+                } else {
+                    e.dismiss;
+                }
+    
+            }, function (dismiss) {
+                return false;
+            })
+        }
+    </script> --}}
+    
+
+@endsection

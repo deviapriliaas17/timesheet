@@ -8,6 +8,7 @@ use App\Timesheet;
 use App\TimesheetAction;
 use App\ProjectLocation;
 use Auth;
+use Carbon\Carbon;
 
 use Illuminate\Http\Request;
 
@@ -21,9 +22,12 @@ class TimesheetController extends Controller
         $begin = new DateTime( "25-09-2021" );
         $end   = new DateTime( "25-10-2021" );
         $dates = [];
+        
+        // $begin = Carbon::now()->daysInMonth;
 
         $interval = $begin->diff($end);
         $days = $interval->days;
+        // dd($days);
         
         // looping for dates
         for($i = 0; $i <= $days;$i++){

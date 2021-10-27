@@ -12,9 +12,11 @@
         <div class="col-lg-6 col-7">
             <h6 class="h2 text-white d-inline-block mb-0">Permission</h6>
         </div>
-        <div class="col-lg-6 col-5 text-right">
-            <button type="button" class="btn btn-sm btn-neutral" data-toggle="modal" data-target="#addPermission">Add Permission</a>
-        </div>
+        @can("Create Permission")
+          <div class="col-lg-6 col-2 text-right">
+              <button type="button" class="btn btn-sm btn-neutral" data-toggle="modal" data-target="#addPermission">Add Permission</a>
+          </div>
+        @endcan
         <!-- Modal Add Project-->
         <div class="modal fade" id="addPermission" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">

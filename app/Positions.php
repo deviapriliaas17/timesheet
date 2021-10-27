@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Positions extends Model
 {
     protected $table = 'positions';
-    protected $fillable = ['name_position'];
+    protected $fillable = ['id','position_code','name_position'];
 }

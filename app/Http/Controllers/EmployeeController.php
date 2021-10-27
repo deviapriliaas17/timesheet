@@ -16,6 +16,7 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use RealRashid\SweetAlert\Facades\Alert;
 use Symfony\Component\CssSelector\Node\PseudoNode;
+use Illuminate\Support\Facades\Validator;
 use Hash;
 
 class EmployeeController extends Controller
@@ -74,6 +75,20 @@ class EmployeeController extends Controller
                 'role' => 'required',
                 'password' => 'required',
             ]);
+
+            // $validator = Validator::make($request->all(), [
+            //     'name_employee' => 'required',
+            //     'address' => 'required',
+            //     'contact' => 'required',
+            //     'email' => 'required|string|email|max:255|unique:users',
+            //     'position' => 'required',
+            //     'role' => 'required',
+            //     'password' => 'required',
+            // ]);
+    
+            // if($validator->fails()){
+            //     return back()->with('error', $validator->messages()->all()[0])->withInput();
+            // }
             
             $user = new User();
             
@@ -106,7 +121,7 @@ class EmployeeController extends Controller
             $userLocation->project_location_code = $request->input('project_location');
             $userLocation->save();
 
-            return redirect('/employee')->with('success', 'Successfully!');
+            return redirect('/employee')->with('success', 'Employee added Successfully!');
         }
         
         public function update(Request $request, $id)
@@ -156,7 +171,7 @@ class EmployeeController extends Controller
                 'project_location_code' => $request->project_location
             ]);
 
-            return redirect('/employee')->with('success', 'Successfully!');
+            return redirect('/employee')->with('toast_success', 'Employee data updated!');
     }
 
     public function destroy($id)

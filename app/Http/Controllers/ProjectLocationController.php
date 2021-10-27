@@ -59,7 +59,7 @@ class ProjectLocationController extends Controller
         return redirect('/project_location')->with('success','Successfully!');
     }
 
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
         ProjectLocation::destroy($id);
         return redirect('/project_location')->with('success','Project data has been deleted!');

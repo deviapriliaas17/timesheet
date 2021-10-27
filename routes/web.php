@@ -6,7 +6,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 Route::get('/', function () {
     return view('auth.login');
     // $user = auth()->user();
-    // auth()->user()->assignRole('user');
+    // auth()->user()->assignRole('admin');
     // if(auth()->user()->hasRole('user')) {
     //     return 'oke';
     // }
@@ -51,6 +51,12 @@ Route::get('/employee/{id}/edit','EmployeeController@edit')->name('editEmployee'
 Route::post('/employee_update/{id}', 'EmployeeController@update')->name('updateEmployee');
 Route::get('/employee/{id}','EmployeeController@destroy');
 
+// POSITION
+Route::get('/position', 'PositionController@index');
+Route::post('/add_position', 'PositionController@store')->name('addPosition');
+Route::patch('/position', 'PositionController@update')->name('updatePosition');
+Route::get('/position/{id}', 'PositionController@destroy');
+
 // PROJECT
 Route::get('/project', 'ProjectController@index');
 Route::post('/add_project', 'ProjectController@store')->name('addProject');
@@ -61,8 +67,7 @@ Route::get('/project/{id}', 'ProjectController@destroy');
 Route::get('/project_location', 'ProjectLocationController@index');
 Route::post('/add_project_location', 'ProjectLocationController@store')->name('addProjectLocation');
 Route::patch('/project_location', 'ProjectLocationController@update')->name('updateProjectLocation');
-Route::get('/project_location/{id}', 'ProjectLocationController@destroy');
-
+Route::get('/project_location/{id}', 'ProjectLocationController@destroy')->name('deleteProjectLocation');
 
 // ROLE
 Route::get('/role', 'RoleController@index')->name('role');
@@ -77,6 +82,11 @@ Route::get('/permission', 'PermissionController@index')->name('permission');
 Route::post('/add_permission', 'PermissionController@store')->name('addPermission');
 Route::post('/permission', 'PermissionController@update')->name('updatePermission');
 Route::get('/permission/{id}', 'PermissionController@destroy');
+
+Route::get('/category_permission', 'CategoryPermissionController@index')->name('category');
+Route::post('/add_category', 'CategoryPermissionController@store')->name('addCategory');
+Route::post('/category_permission','CategoryPermissionController@update')->name('updateCategoryPermission');
+Route::get('/category_permission/{id}', 'CategoryPermissionController@destroy');
 
 
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');

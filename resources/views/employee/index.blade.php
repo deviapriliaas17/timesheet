@@ -21,9 +21,15 @@
             </div>
         </div>
     </div>
-
+    
+    
     {{-- page content --}}
     <div class="container-fluid mt--6">
+        @if (session('flash_message_success'))
+        <div class="alert alert-success col-4">
+            {{ session('flash_message_success') }}
+        </div>
+        @endif
         <div class="row">
             <div class="col">
                 <div class="card">
@@ -37,7 +43,7 @@
                             </div>
                         </div>
                     </div>
-
+                    
                     <!-- Light table -->
                     <div class="table-responsive">
                         <table class="table align-items-center table-flush">
@@ -55,25 +61,25 @@
                                 </tr> 
                             </thead>
                             <tbody>
-                            @foreach ($data as $user)
-                                    <tr class="text-center">
-                                        <td class="table-user text-left">
-                                            <img src="{{ asset('uploads/employee/' . $user->avatar) }}"
-                                                class="avatar rounded-circle mr-3">
-                                            <b>{{ $user->name_employee }}</b>
-                                        </td>
-                                        <td>{{ $user->name_position}}</td>
-                                        <td>
-                                            @foreach ($user->roles as $role)
-                                                {{ $role->name }}
-                                            @endforeach
-                                        </td>
-                                        <td>{{ $user->address}}</td>
-                                        <td>{{ $user->contact}}</td>
-                                        <td>{{ $user->location_name}}</td>
-                                        {{-- @can('Actions Employee') --}}
-                                        <td class="table-actions">
-                                            @can("Edit Employee")
+                                @foreach ($data as $user)
+                                <tr class="text-center">
+                                    <td class="table-user text-left">
+                                        <img src="{{ asset('uploads/employee/' . $user->avatar) }}"
+                                        class="avatar rounded-circle mr-3">
+                                        <b>{{ $user->name_employee }}</b>
+                                    </td>
+                                    <td>{{ $user->name_position}}</td>
+                                    <td>
+                                        @foreach ($user->roles as $role)
+                                        {{ $role->name }}
+                                        @endforeach
+                                    </td>
+                                    <td>{{ $user->address}}</td>
+                                    <td>{{ $user->contact}}</td>
+                                    <td>{{ $user->location_name}}</td>
+                                    {{-- @can('Actions Employee') --}}
+                                    <td class="table-actions">
+                                        @can("Edit Employee")
                                             <a href="{{ url('/employee/'.$user->id.'/edit') }}" class="table-action text-primary"  data-toggle="tooltip" data-original-title="Edit">
                                                 <i class="fas fa-user-edit"></i>
                                             </a>
@@ -86,12 +92,14 @@
                                         </td>
                                         {{-- @endcan --}}
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                                    @endforeach
+                                </tbody>
+                                @include('sweetalert::alert')
+                            </table>
+                        </div>
                 </div>
             </div>
         </div>
     </div>
-@endsection
+    @endsection
+    

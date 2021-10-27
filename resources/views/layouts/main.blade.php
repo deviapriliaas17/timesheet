@@ -85,6 +85,14 @@
                     </a>
                   </li>
                   @endcan
+                  {{-- @can("View Position") --}}
+                  <li class="nav-item">
+                    <a href="{{ url('/position') }}" class="nav-link">
+                      <span class="sidenav-mini-icon"> <i class="ni ni-circle-08 text-success"></i> </span>
+                      <span class="sidenav-normal"> Position </span>
+                    </a>
+                  </li>
+                  {{-- @endcan --}}
                   @can("View Project")
                   <li class="nav-item">
                     <a href="{{ url('/project') }}" class="nav-link">
@@ -117,6 +125,14 @@
                     </a>
                   </li>
                   @endcan
+                  {{-- @can("View Category Permission") --}}
+                  <li class="nav-item">
+                    <a href="{{ url('/category_permission') }}" class="nav-link">
+                      <span class="sidenav-mini-icon"> <i class="ni ni-active-40 text-yellow"></i> </span>
+                      <span class="sidenav-normal"> Category Permission</span>
+                    </a>
+                  </li>
+                  {{-- @endcan --}}
                 </ul>
               </div>
             </li>
@@ -225,6 +241,18 @@
   <!-- Argon JS -->
   <script src="{{ asset('assets/js/argon.js?v=1.2.0')}}"></script>
   <script>
+    $('#editPosition').on('show.bs.modal', function (event){
+
+      var button = $(event.relatedTarget)
+      var position = button.data('myposition')
+      var position_id = button.data('positionid')
+      var modal = $(this)
+
+      modal.find('.modal-body #position').val(position);
+      modal.find('.modal-body #position_id').val(position_id);
+    })
+  </script>
+  <script>
     $('#editProject').on('show.bs.modal', function (event){
 
       var button = $(event.relatedTarget)
@@ -264,6 +292,18 @@
       modal.find('.modal-body #permission_id').val(permission_id);
     })
   </script>
+  <script>
+    $('#editCategoryPermission').on('show.bs.modal', function (event){
+
+      var button = $(event.relatedTarget)
+      var categoryPermission = button.data('mycategory')
+      var category_id = button.data('categoryid')
+      var modal = $(this)
+
+      modal.find('.modal-body #categoryPermission').val(categoryPermission);
+      modal.find('.modal-body #category_id').val(category_id);
+    })
+  </script>
 
   {{-- create project dan project location --}}
   <script>
@@ -278,7 +318,6 @@
 
     $('#createProject').on('change', function(){
       var project_type = $(this).val();
-      console.log(project_type)
 
       if (project_type) {
         $.ajax({
@@ -317,6 +356,76 @@
         });
     })
   </script>
+
+  {{-- <script>
+
+  $(document).on('click', '.button', function (e) {
+      e.preventDefault();
+      var id = $(this).data('id');
+      // var url = "{{url('/project_location')}}/" + id;
+      // console.log(url);
+      swal({
+              title: "Are you sure?",
+              type: "warning",
+              text: "Please ensure and then confirm!",
+              confirmButtonClass: "btn-danger",
+              confirmButtonColor: '#3085d6',
+              confirmButtonText: "Yes",
+              cancelButtonColor: '#d33',
+              showCancelButton: true,
+          },
+          function() {
+              $.ajax({
+                  type: "GET",
+                  url: "{{url('/project_location')}}/" + id,
+                  data: {id:id},
+                  success: function (data) {
+                                //
+                      }         
+              });
+      });
+  });
+
+  </script> --}}
+
+  {{-- <script type="text/javascript">
+    function deleteConfirmation(id) {
+      swal({
+            title: "Delete?",
+            text: "Please ensure and then confirm!",
+            type: "warning",
+            showCancelButton: !0,
+            confirmButtonText: "Yes, delete it!",
+            confirmButtonColor : '#3085d6'
+            cancelButtonText: "No, cancel!",
+            cancelButtonColot: '$d33',
+            reverseButtons: !0
+        }).then(function (e) {
+
+            if (e.value === true) {
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+                $.ajax({
+                    type: 'GET',
+                    url: "{{url('/location_project')}}/" + id,
+                    data: {_token: CSRF_TOKEN},
+                    dataType: 'JSON',
+                    success: function (results) {
+
+                        if (results.success === true) {
+                            swal("Done!", results.message, "success");
+                        } else {
+                            swal("Error!", results.message, "error");
+                        }
+                    }
+                });
+            }
+        })
+    }
+</script> --}}
+
+@include('sweetalert::alert')
+
 </body>
 
 </html>

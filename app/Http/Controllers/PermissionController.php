@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CategoryPermissions;
 use App\Permissions;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
@@ -11,8 +12,10 @@ class PermissionController extends Controller
     public function index() 
     {
         $permissions = Permissions::all(); 
-        $permissions_category = Permissions::pluck('category','category');
+        $permissions_category = CategoryPermissions::pluck('name_category','name_category');
         $category = 2;
+        // $permissions_category = Permissions::pluck('category','category');
+        // $category = 2;
 
         return view('permission.index', compact('permissions_category','permissions','category'));
     }
