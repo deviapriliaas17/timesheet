@@ -147,7 +147,7 @@ class EmployeeController extends Controller
             $user->contact  = $request->input('contact');
             $user->email = $request->input('email');
             $user->position_code = $request->input('position');
-            $user->password = Hash::make($request->input('password'));
+            // $user->password = Hash::make($request->input('password'));
             
             if($request->hasFile('avatar')) 
             {
@@ -162,6 +162,7 @@ class EmployeeController extends Controller
                     $file->move('uploads/employee/', $filename);
                     $user->avatar = $filename;
             }
+            
 
             $user->update();
             $role = Role::find($request->role);

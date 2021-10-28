@@ -42,6 +42,7 @@ class DashboardController extends Controller
                 ->get();
             }
             
+        // for filter
         if($request->input('fromDate') && $request->input('toDate')){
             foreach($employees as $key => $e){
                 $data = DB::table('timesheet')
@@ -56,7 +57,7 @@ class DashboardController extends Controller
             $employees[$key]->workCount = $data->work;
             $employees[$key]->absentCount = $data->absent;
             }
-        } else {
+        } else { // menampilkan semua
             foreach($employees as $key => $e){
                 $data = DB::table('timesheet')
                     ->join('users','users.namecode','=','timesheet.namecode')
@@ -69,6 +70,7 @@ class DashboardController extends Controller
             $employees[$key]->absentCount = $data->absent;
             }   
         }
+
 
         //looping
         foreach($times as $key => $t){
@@ -83,8 +85,8 @@ class DashboardController extends Controller
                         ->first();
                         $times[$key]->data[] = isset($data) ? $data : [] ;
                     }
-            }else{
-                $times[$key]->data[] = [] ;
+                }else{
+                    $times[$key]->data[] = [] ;
             }   
         }
 

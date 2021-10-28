@@ -48,7 +48,7 @@
                     </div>
                 </div>
             </div>
-            <ul class="navbar-nav align-items-lg-center ml-lg-auto">
+            {{-- <ul class="navbar-nav align-items-lg-center ml-lg-auto">
                 <li class="nav-item d-none d-lg-block ml-lg-4">
                     <a href="{{ route('register') }}" class="btn btn-neutral btn-icon">
                         <span class="btn-inner--icon">
@@ -57,7 +57,7 @@
                         <span class="nav-link-inner--text">Sign up</span>
                     </a>
                 </li>
-            </ul>
+            </ul> --}}
         </div>
     </nav>
 

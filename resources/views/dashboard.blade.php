@@ -67,18 +67,22 @@
                 <span class="avatar avatar-lg rounded-circle" style="width:150px; height:150px">
                   <img src="{{ asset('uploads/employee/' . Auth::user()->avatar) }}">
                 </span>
+                <br>
+                <h3>{{ Auth::user()->name_employee }}</h3>
             </div>
+
+            <!-- MANDAYS -->
+            @if(isset($times[0]->data))
             <div class="col-xl-3 col-md-6">
-              <div class="card card-stats">
-                <!-- Card body -->
+              <div class="card card-stats">    
                 <div class="card-body">
                   <div class="row">
                     <div class="col ">
                       @foreach($times as $t)
-                            <tr class="text-center">
-                                <td>{{ date('', strtotime($t->date)) }}</td>
-                              </tr>
-                            @endforeach
+                      <tr class="text-center">
+                        <td>{{ date('', strtotime($t->date)) }}</td>
+                      </tr>
+                      @endforeach
                       {{-- <h5 class="card-title text-uppercase text-muted mb-0">Oktober</h5> --}}
                       @foreach($employees as $em)
                         @if ($em->name_employee == Auth::user()->name_employee )   
@@ -93,13 +97,31 @@
                       </div>
                     </div>
                   </div>
-                  {{-- <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
-                  </p> --}}
                 </div>
               </div>
             </div>
+            @else
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">    
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col ">   
+                          <span class="h3 font-weight-bold mb-0">Mandays</span> <br>
+                          <span class="h1 font-weight-bold mb-0 ml-6" style="font-size:65px">0</span>                             
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
+                        <i class="ni ni-briefcase-24"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            @endif
+
+            {{-- WORKING --}}
+            @if(isset($times[0]->data))
             <div class="col-xl-3 col-md-6">
               <div class="card card-stats">
                 <!-- Card body -->
@@ -125,13 +147,32 @@
                       </div>
                     </div>
                   </div>
-                  {{-- <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
-                  </p> --}}
                 </div>
               </div>
             </div>
+            @else
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <!-- Card body -->
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                          <span class="h3 font-weight-bold mb-0">Working</span> <br> 
+                          <span class="h1 font-weight-bold mb-0 ml-6" style="font-size: 65px">0</span>                        
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-gradient-success text-white rounded-circle shadow">
+                        <i class="ni ni-check-bold"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            @endif
+
+            {{-- ABSENT --}}
+            @if(isset($times[0]->data))
             <div class="col-xl-3 col-md-6">
               <div class="card card-stats">
                 <!-- Card body -->
@@ -157,25 +198,43 @@
                       </div>
                     </div>
                   </div>
-                  {{-- <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
-                  </p> --}}
                 </div>
               </div>
             </div>
+            @else
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <!-- Card body -->
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <span class="h3 font-weight-bold mb-0">Absent</span> <br>
+                      <span class="h1 font-weight-bold mb-0 ml-6" style="font-size: 65px">0</span>                                
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-gradient-danger text-white rounded-circle shadow">
+                        <i class="ni ni-fat-remove"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            @endif
           </div>
         </div>
       </div>
     </div>
 
     {{-- table summary --}}
+    @if(isset($times[0]->data))
     <div class="row align-items-center py-4">
       <div class="col">
         <h6 class="h2 text-center">Summary</h6>
         {{-- <h6 class="h2 text-white d-inline-block mb-0">{{ Auth::user()->name_employee }}</h6> --}}
       </div>
     </div>
+    @endif
 
     {{-- main --}}
     <div class="table-responsive">
@@ -185,6 +244,7 @@
       <colgroup span="2"></colgroup>
       <colgroup span="2"></colgroup>
       
+      @if(isset($times[0]->data))
       <thead class="thead">
           <tr class="text-center">
             <th rowspan="2">Date</th>
@@ -204,8 +264,10 @@
             @endforeach
           </tr>
       </thead>
+      @endif
       
       <tbody>
+        @if(isset($times[0]->data))
         @foreach($times as $t)
         <tr class="text-center">
           <td>{{ date('d-m-Y', strtotime($t->date)) }}</td>
@@ -216,8 +278,8 @@
           @endforeach
         </tr>
         @endforeach
+        @endif  
       </tbody>
-      
       </table>
     </div>
   </div>

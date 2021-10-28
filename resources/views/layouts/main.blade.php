@@ -77,14 +77,14 @@
               </a>
               <div class="collapse" id="navbar-management">
                 <ul class="nav nav-sm flex-column">
-                  @can("View Employee")
+                  {{-- @can("View Employee") --}}
                   <li class="nav-item">
                     <a href="{{ url('/employee') }}" class="nav-link">
                       <span class="sidenav-mini-icon"> <i class="ni ni-circle-08 text-success"></i> </span>
                       <span class="sidenav-normal"> Employee </span>
                     </a>
                   </li>
-                  @endcan
+                  {{-- @endcan --}}
                   {{-- @can("View Position") --}}
                   <li class="nav-item">
                     <a href="{{ url('/position') }}" class="nav-link">
